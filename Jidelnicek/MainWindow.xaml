@@ -5,8 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Jidelnicek"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Jídelníček"
+        Height="680"
+        Width="900"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="20"
+                      ResizeBorderThickness="5"
+                      CornerRadius="20" />
+    </WindowChrome.WindowChrome>
 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0" 
+                Grid.Column="0"
+                Grid.RowSpan="2"
+                Width="auto" 
+                CornerRadius="20 0 0 20"
+                Background="#343155">
+        </Border>
+        <Border Grid.Row="0"
+                Grid.Column="1"
+                Grid.RowSpan="2"
+                CornerRadius="0 20 20 0"
+                Background="#3E3A65">
+        </Border>
+        
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Style="{StaticResource Title}"
+                   Text="Jídelníček"/>
+        
+        <Button Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource CloseBtn}"
+                Click="CloseBtn_OnClick">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/close.png" RenderOptions.BitmapScalingMode="Fant"/>
+            </Button.Background>
+        </Button>
+        
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    VerticalAlignment="Center">
+            <Button Style="{StaticResource NavbarBtn}">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/food.png" RenderOptions.BitmapScalingMode="Fant"/>
+                </Button.Background>
+            </Button>
+            <Button Style="{StaticResource NavbarBtn}">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/add.png" RenderOptions.BitmapScalingMode="Fant"/>
+                </Button.Background>
+            </Button>
+            <Button Style="{StaticResource NavbarBtn}">
+                <Button.Background>
+                    <ImageBrush ImageSource="Images/list.png" RenderOptions.BitmapScalingMode="Fant"/>
+                </Button.Background>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

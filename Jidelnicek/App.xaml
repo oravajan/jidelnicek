@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:Jidelnicek"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/CloseButton.xaml"/>
+                <ResourceDictionary Source="Styles/NavbarButton.xaml"/>
+                <ResourceDictionary Source="Styles/Title.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
