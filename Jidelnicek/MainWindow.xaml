@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Jidelnicek"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Height="650" Width="1000" WindowStyle="None" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="30"/>
+    </WindowChrome.WindowChrome>
+    
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Aquamarine"/> 
+        <Grid Grid.Row="1" Background="Crimson"/>
+        <Grid Grid.Row="2" Background="Blue"/> 
+        <Grid Grid.Row="3" Background="Gold"/>
+        
+        <TextBlock Grid.Row="0" Text="Jídelníček" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        <StackPanel Grid.Row="0" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Content="Minimize" Margin="5"></Button>
+            <Button Content="neco" Margin="5"></Button>
+            <Button Content="Exit" Margin="5"></Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBlock Text="Použité filtry:" Margin="5" FontSize="12"/>
+        </StackPanel>
+        
+        <DataGrid Name="DataGrid" Grid.Row="2" AutoGenerateColumns="False" RowHeight="50">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Obrázek" Binding="{Binding obrazek}" Width="0.2*"/>
+                <DataGridTextColumn Header="Název jídla" Width="1*"/>
+                <DataGridTextColumn Header="Naposledy vařeno" Width="0.2*"/>
+                <DataGridTextColumn Header="Akce" Width="0.2*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button Content="Přidat jídlo" Margin="20,5,20,5"/>
+            <Button Content="Filtrovat" Margin="20,5,20,5"/>
+            <Button Content="Záznam jídel" Margin="20,5,20,5"/>
+        </StackPanel>
     </Grid>
+    
 </Window>
