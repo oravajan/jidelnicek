@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Hamburger",
+    "Notes": "nemam torad",
+    "LastTime": "0001-01-01T00:00:00",
+    "Tags": [
+      "hovezi",
+      "husty"
+    ]
+  },
+  {
+    "Name": "Hamburger",
+    "Notes": "",
+    "LastTime": "0001-01-01T00:00:00",
+    "Tags": []
+  }
+]

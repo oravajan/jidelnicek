@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Jidelnicek"
+        xmlns:viewModels="clr-namespace:Jidelnicek.ViewModels"
+        xmlns:views="clr-namespace:Jidelnicek.Views"
         mc:Ignorable="d"
         Title="Jídelníček"
         Height="680"
@@ -14,7 +16,7 @@
         Background="Transparent">
     
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="20"
+        <WindowChrome CaptionHeight="30"
                       ResizeBorderThickness="5"
                       CornerRadius="20" />
     </WindowChrome.WindowChrome>
@@ -35,19 +37,19 @@
                 Grid.RowSpan="2"
                 Width="auto" 
                 CornerRadius="20 0 0 20"
-                Background="#343155">
+                Background="#373459">
         </Border>
         <Border Grid.Row="0"
                 Grid.Column="1"
                 Grid.RowSpan="2"
                 CornerRadius="0 20 20 0"
-                Background="#3E3A65">
+                Background="#423D68">
         </Border>
         
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   Style="{StaticResource Title}"
+                   Style="{StaticResource MainTitle}"
                    Text="Jídelníček"/>
         
         <Button Grid.Row="0"
@@ -62,21 +64,45 @@
         <StackPanel Grid.Row="1"
                     Grid.Column="0"
                     VerticalAlignment="Center">
-            <Button Style="{StaticResource NavbarBtn}">
+            <Button Style="{StaticResource NavbarBtn}"
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="ListFood">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/food.png" RenderOptions.BitmapScalingMode="Fant"/>
                 </Button.Background>
             </Button>
-            <Button Style="{StaticResource NavbarBtn}">
+            
+            <Button Style="{StaticResource NavbarBtn}"
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="AddFood">
                 <Button.Background>
                     <ImageBrush ImageSource="Images/add.png" RenderOptions.BitmapScalingMode="Fant"/>
                 </Button.Background>
             </Button>
-            <Button Style="{StaticResource NavbarBtn}">
+            
+            <Button Style="{StaticResource NavbarBtn}"
+                    Command="{Binding UpdateViewCommand}"
+                    CommandParameter="HistoryFood">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/list.png" RenderOptions.BitmapScalingMode="Fant"/>
+                    <ImageBrush ImageSource="Images/history.png" RenderOptions.BitmapScalingMode="Fant"/>
                 </Button.Background>
             </Button>
         </StackPanel>
+        
+        <ContentControl Grid.Row="1"
+                        Grid.Column="1"
+                        Content="{Binding CurrentViewModel}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type viewModels:AddFoodViewModel}">
+                    <views:AddFoodView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:HistoryFoodViewModel}">
+                    <views:HistoryFoodView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModels:ListFoodViewModel}">
+                    <views:ListFoodView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
     </Grid>
 </Window>

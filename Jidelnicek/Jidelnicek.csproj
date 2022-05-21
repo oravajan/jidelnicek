@@ -26,12 +26,15 @@
       <Resource Include="Images\food.png" />
       <None Remove="Images\food_active.png" />
       <None Remove="Images\list.png" />
-      <Resource Include="Images\list.png" />
       <None Remove="Images\list_active.png" />
       <None Remove="Fonts\PoetsenOne-Regular.ttf" />
       <None Remove="Fonts\PentaGrams Malefissent.ttf" />
       <None Remove="Fonts\GreatVibes-Regular.ttf" />
       <Resource Include="Fonts\GreatVibes-Regular.ttf" />
+      <None Remove="Fonts\Raleway-Regular.ttf" />
+      <Resource Include="Fonts\Raleway-Regular.ttf" />
+      <None Remove="Images\history.png" />
+      <Resource Include="Images\history.png" />
     </ItemGroup>
 
     <ItemGroup>

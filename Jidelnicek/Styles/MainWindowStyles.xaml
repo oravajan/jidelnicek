@@ -3,6 +3,13 @@
     
     <ImageBrush x:Key="CloseBtnActive" ImageSource="../Images/close_active.png" RenderOptions.BitmapScalingMode="Fant"/>
     
+    <Style x:Key="MainTitle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="42"/>
+        <Setter Property="FontFamily" Value="../Fonts/#Great Vibes"/>
+    </Style>
+    
     <Style x:Key="CloseBtn" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="30"/>
         <Setter Property="Width" Value="30"/>
@@ -24,6 +31,33 @@
                             <Setter Property="Background"
                                     TargetName="CloseBtn"
                                     Value="{StaticResource CloseBtnActive}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="NavbarBtn" TargetType="Button">
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="Width" Value="45"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="20"/>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="NavbarBtn"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="4">
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="BorderThickness"
+                                    TargetName="NavbarBtn"
+                                    Value="0"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

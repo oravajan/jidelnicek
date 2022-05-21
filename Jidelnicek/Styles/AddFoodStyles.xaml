@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="AddFoodTitle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextDecorations" Value="Underline"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="FontFamily" Value="../Fonts/#Raleway"/>
+    </Style>
+    
+    <Style x:Key="Labels" TargetType="StackPanel">
+        <Style.Resources>
+            <Style x:Key="Label" TargetType="TextBlock">
+                <Setter Property="Margin" Value="30"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+</ResourceDictionary>
