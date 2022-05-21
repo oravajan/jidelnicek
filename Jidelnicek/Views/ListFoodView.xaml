@@ -7,11 +7,12 @@
              mc:Ignorable="d">
     <Grid>
         <DataGrid ItemsSource="{Binding Foods}"
-                  AutoGenerateColumns="False">
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Název" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime}"/>
-                <DataGridTextColumn Header="Akce" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime, StringFormat='dd-MM-yyyy'}"/>
+                <DataGridTextColumn Header="Akce"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

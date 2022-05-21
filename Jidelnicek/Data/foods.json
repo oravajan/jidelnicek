@@ -1,0 +1,21 @@
+[
+  {
+    "Id": 0,
+    "Name": "Hamburger",
+    "Notes": "chutna mi",
+    "History": [],
+    "Tags": [
+      "hovezi",
+      "lehky"
+    ]
+  },
+  {
+    "Id": 1,
+    "Name": "Pizza",
+    "Notes": "",
+    "History": [
+      "2022-05-21T00:00:00+02:00"
+    ],
+    "Tags": []
+  }
+]

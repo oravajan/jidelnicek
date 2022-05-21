@@ -21,22 +21,26 @@
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal">
             <TextBlock Text="Název:"/>
-            <TextBox Background="Transparent"/>
+            <TextBox Text="{Binding NewFood.Name, Mode=TwoWay}"
+                     Background="Transparent"/>
         </StackPanel>
         
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal">
             <TextBlock Text="Tagy:"/>
-            <TextBox Background="Transparent"/>
+            <TextBox Text="{Binding NewFood.Tags, Mode=TwoWay}"
+                     Background="Transparent"/>
         </StackPanel>
         
         <StackPanel Grid.Row="3"
                     Orientation="Horizontal">
             <TextBlock Text="Poznámky:"/>
-            <TextBox Background="Transparent"/>
+            <TextBox Text="{Binding NewFood.Notes, Mode=TwoWay}"
+                     Background="Transparent"/>
         </StackPanel>
         
         <Button Grid.Row="4"
-                Content="Přidat"/>
+                Content="Přidat"
+                Command="{Binding AddFoodCommand}"/>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using Jidelnicek.Models;
@@ -11,11 +12,19 @@ public class FoodDataMapper : IDataMapper<Food>
 
     public FoodDataMapper()
     {
-        _fileName = @"E:\PROGRAMOVANI\Jidelnicek\Jidelnicek\Data\data.json";
+        _fileName = @"E:\PROGRAMOVANI\Jidelnicek\Jidelnicek\Data\foods.json";
     }
 
     public List<Food> GetAll()
     {
+        // List<Food> a = new List<Food>();
+        // List<string> tagy = new List<string>();
+        // tagy.Add("hovezi");
+        // tagy.Add("lehky");
+        // a.Add(new Food(0, "Hamburger", "chutna mi", new List<DateTime>(){new(2000, 1, 30)}, tagy));
+        // a.Add(new Food(1, "Pizza", "", new List<DateTime>() {DateTime.Today}, new List<string>()));
+        // SaveAll(a);
+
         string jsonString = File.ReadAllText(_fileName);
         var foods = JsonSerializer.Deserialize<List<Food>>(jsonString);
         if (foods == null)
