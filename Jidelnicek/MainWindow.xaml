@@ -27,42 +27,17 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <Border Grid.Row="0" 
-                Grid.Column="0"
-                Grid.RowSpan="2"
-                Width="auto" 
+        <Border Grid.Column="0"
                 CornerRadius="20 0 0 20"
                 Background="#373459">
         </Border>
-        <Border Grid.Row="0"
-                Grid.Column="1"
-                Grid.RowSpan="2"
+        
+        <Border Grid.Column="1"
                 CornerRadius="0 20 20 0"
                 Background="#423D68">
         </Border>
-        
-        <TextBlock Grid.Row="0"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Style="{StaticResource MainTitle}"
-                   Text="Jídelníček"/>
-        
-        <Button Grid.Row="0"
-                Grid.Column="1"
-                Style="{StaticResource CloseBtn}"
-                Click="CloseBtn_OnClick">
-            <Button.Background>
-                <ImageBrush ImageSource="Images/close.png" RenderOptions.BitmapScalingMode="Fant"/>
-            </Button.Background>
-        </Button>
-        
-        <StackPanel Grid.Row="1"
-                    Grid.Column="0"
+
+        <StackPanel Grid.Column="0"
                     VerticalAlignment="Center">
             <Button Style="{StaticResource NavbarBtn}"
                     Command="{Binding UpdateViewCommand}"
@@ -89,20 +64,38 @@
             </Button>
         </StackPanel>
         
-        <ContentControl Grid.Row="1"
-                        Grid.Column="1"
-                        Content="{Binding CurrentViewModel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewModels:AddFoodViewModel}">
-                    <views:AddFoodView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:HistoryFoodViewModel}">
-                    <views:HistoryFoodView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewModels:ListFoodViewModel}">
-                    <views:ListFoodView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0"
+                       Style="{StaticResource MainTitle}"
+                       Text="Jídelníček"/>
+
+            <Button Grid.Row="0"
+                    Style="{StaticResource CloseBtn}"
+                    Click="CloseBtn_OnClick">
+            </Button>
+
+            <ContentControl Grid.Row="1"
+                            Content="{Binding CurrentViewModel}"
+                            Margin="20">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type viewModels:AddFoodViewModel}">
+                        <views:AddFoodView/>
+                    </DataTemplate>
+                    
+                    <DataTemplate DataType="{x:Type viewModels:HistoryFoodViewModel}">
+                        <views:HistoryFoodView/>
+                    </DataTemplate>
+                    
+                    <DataTemplate DataType="{x:Type viewModels:ListFoodViewModel}">
+                        <views:ListFoodView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
     </Grid>
 </Window>

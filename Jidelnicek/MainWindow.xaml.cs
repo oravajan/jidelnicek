@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using Jidelnicek.ViewModels;
 
 namespace Jidelnicek
 {
@@ -8,10 +7,7 @@ namespace Jidelnicek
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
-            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
-
         private void CloseBtn_OnClick(object sender, RoutedEventArgs e)
         {
             Close();

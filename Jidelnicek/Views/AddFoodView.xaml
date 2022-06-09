@@ -10,37 +10,58 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Row="0"
                    Style="{StaticResource AddFoodTitle}"
                    Text="Přidat nové jídlo"/>
         
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal">
-            <TextBlock Text="Název:"/>
-            <TextBox Text="{Binding NewFood.Name, Mode=TwoWay}"
-                     Background="Transparent"/>
-        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Název:"
+                       Style="{StaticResource Labels}"/>
+            <TextBox Grid.Row="0"
+                     Grid.Column="1" 
+                     Text="{Binding NewFood.Name, Mode=TwoWay}"
+                     Style="{StaticResource Text}"/>
+            
+            <TextBlock Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Tagy:"
+                       Style="{StaticResource Labels}"/>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Text="{Binding NewFood.Tags, Mode=TwoWay}"
+                     Style="{StaticResource Text}"/>
+            
+            <TextBlock Grid.Row="2"
+                       Grid.Column="0"
+                       Text="Poznámky:"
+                       Style="{StaticResource Labels}"/>
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Text="{Binding NewFood.Notes, Mode=TwoWay}"
+                     Style="{StaticResource Text}"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Height="100"
+                     MaxLength="255"/>
+        </Grid>
         
-        <StackPanel Grid.Row="2"
-                    Orientation="Horizontal">
-            <TextBlock Text="Tagy:"/>
-            <TextBox Text="{Binding NewFood.Tags, Mode=TwoWay}"
-                     Background="Transparent"/>
-        </StackPanel>
-        
-        <StackPanel Grid.Row="3"
-                    Orientation="Horizontal">
-            <TextBlock Text="Poznámky:"/>
-            <TextBox Text="{Binding NewFood.Notes, Mode=TwoWay}"
-                     Background="Transparent"/>
-        </StackPanel>
-        
-        <Button Grid.Row="4"
+        <Button Grid.Row="2"
                 Content="Přidat"
-                Command="{Binding AddFoodCommand}"/>
+                Command="{Binding AddFoodCommand}"
+                Style="{StaticResource Add}"/>
     </Grid>
 </UserControl>

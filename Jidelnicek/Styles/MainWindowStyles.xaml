@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <ImageBrush x:Key="CloseBtnActive" ImageSource="../Images/close_active.png" RenderOptions.BitmapScalingMode="Fant"/>
+    <ImageBrush x:Key="CloseBtnInactive" ImageSource="../Images/close.png" RenderOptions.BitmapScalingMode="Fant"/>
     
     <Style x:Key="MainTitle" TargetType="TextBlock">
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -17,6 +18,7 @@
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="Background" Value="{StaticResource CloseBtnInactive}"/>
         
         <Setter Property="Template">
             <Setter.Value>
@@ -24,6 +26,7 @@
                     <Border x:Name="CloseBtn"
                             Background="{TemplateBinding Background}">
                     </Border>
+                    
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
@@ -51,6 +54,7 @@
                             Background="{TemplateBinding Background}"
                             BorderThickness="4">
                     </Border>
+                    
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
                                  Value="True">

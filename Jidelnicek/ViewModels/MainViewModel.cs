@@ -15,9 +15,7 @@ public class MainViewModel : ViewModelBase
             OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
-    
     public ICommand UpdateViewCommand { get; }
-
     public MainViewModel()
     {
         _currentViewModel = new ListFoodViewModel();

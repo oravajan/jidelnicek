@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Jidelnicek.Commands;
 using Jidelnicek.DataMappers;
 using Jidelnicek.Models;
