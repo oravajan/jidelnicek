@@ -33,7 +33,7 @@
                        Style="{StaticResource Labels}"/>
             <TextBox Grid.Row="0"
                      Grid.Column="1" 
-                     Text="{Binding NewFood.Name, Mode=TwoWay}"
+                     Text="{Binding Name, Mode=TwoWay}"
                      Style="{StaticResource Text}"/>
             
             <TextBlock Grid.Row="1"
@@ -42,7 +42,7 @@
                        Style="{StaticResource Labels}"/>
             <TextBox Grid.Row="1"
                      Grid.Column="1"
-                     Text="{Binding NewFood.Tags, Mode=TwoWay}"
+                     Text="{Binding Tags, Mode=TwoWay}"
                      Style="{StaticResource Text}"/>
             
             <TextBlock Grid.Row="2"
@@ -51,7 +51,7 @@
                        Style="{StaticResource Labels}"/>
             <TextBox Grid.Row="2"
                      Grid.Column="1"
-                     Text="{Binding NewFood.Notes, Mode=TwoWay}"
+                     Text="{Binding Notes, Mode=TwoWay}"
                      Style="{StaticResource Text}"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"

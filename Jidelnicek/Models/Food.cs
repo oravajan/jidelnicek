@@ -13,12 +13,22 @@ public class Food
     public List<string> Tags { get; set; }
     public DateTime LastTime => History.LastOrDefault();
 
-    // public Food(int id, string name, string notes, List<DateTime> history, List<string> tags)
-    // {
-    //     Id = id;
-    //     Name = name;
-    //     Notes = notes;
-    //     History = history;
-    //     Tags = tags;
-    // }
+    public Food(int id, string name, string notes, List<DateTime> history, List<string> tags)
+    {
+        Id = id;
+        Name = name;
+        Notes = notes;
+        History = history;
+        History.Sort();
+        Tags = tags;
+        History.Sort();
+    }
+
+    public Food(string name, string notes, List<string> tags)
+    {
+        Name = name;
+        Notes = notes;
+        History = new List<DateTime>();
+        Tags = tags;
+    }
 }

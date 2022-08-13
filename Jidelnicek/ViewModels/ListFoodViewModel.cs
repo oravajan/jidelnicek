@@ -8,7 +8,6 @@ public class ListFoodViewModel : ViewModelBase
 {
     private IDataMapper<Food> _mapper;
     private List<Food> _foods;
-
     public List<Food> Foods
     {
         get => _foods;
@@ -22,6 +21,6 @@ public class ListFoodViewModel : ViewModelBase
     public ListFoodViewModel()
     {
         _mapper = new FoodDataMapper();
-        Foods = _mapper.GetAll();
+        _foods = _mapper.GetAll();
     }
 }

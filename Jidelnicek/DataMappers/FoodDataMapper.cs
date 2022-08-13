@@ -1,54 +1,113 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
+using System.Data;
+using System.Data.SQLite;
+using System.Linq;
 using Jidelnicek.Models;
 
 namespace Jidelnicek.DataMappers;
 
 public class FoodDataMapper : IDataMapper<Food>
 {
-    private string _fileName;
+    private const string FileName = "menu.db";
+    private readonly string _connectionString;
 
     public FoodDataMapper()
     {
-        _fileName = @"E:\PROGRAMOVANI\Jidelnicek\Jidelnicek\Data\foods.json";
-    }
+        // string dataPath = Path.Combine(new []{
+        //     AppDomain.CurrentDomain.BaseDirectory, FileName
+        // });
+        const string dataPath = @"E:\PROGRAMOVANI\Jidelnicek\Jidelnicek\Data\menu.db";
 
+        var builder = new SQLiteConnectionStringBuilder
+        {
+            DataSource = dataPath
+        };
+        _connectionString = builder.ConnectionString;
+
+        if (!File.Exists(dataPath)) 
+            CreateDb(dataPath);
+    }
+    private void CreateDb(string dataPath)
+    {
+        SQLiteConnection.CreateFile(dataPath);
+        const string sqlCreateFood = @"CREATE TABLE Food(
+                                        id_food INTEGER PRIMARY KEY, 
+                                        name varchar(30) NOT NULL, 
+                                        notes varchar(100) NOT NULL,
+                                        tags varchar(200) NOT NULL
+                 )";
+        const string sqlCreateHistory = @"CREATE TABLE History(
+                                        id_history INTEGER PRIMARY KEY, 
+                                        id_food INTEGER NOT NULL, 
+                                        date TEXT NOT NULL
+                 )";
+        ExeNonQueryCommand(sqlCreateFood);
+        ExeNonQueryCommand(sqlCreateHistory);
+    }
+    private int ExeNonQueryCommand(string sqlCommandText)
+    {
+        using var conn = new SQLiteConnection(_connectionString);
+        conn.Open();
+
+        using var cmd = new SQLiteCommand(sqlCommandText, conn);
+        return cmd.ExecuteNonQuery();
+    }
     public List<Food> GetAll()
     {
-        // List<Food> a = new List<Food>();
-        // List<string> tagy = new List<string>();
-        // tagy.Add("hovezi");
-        // tagy.Add("lehky");
-        // a.Add(new Food(0, "Hamburger", "chutna mi", new List<DateTime>(){new(2000, 1, 30)}, tagy));
-        // a.Add(new Food(1, "Pizza", "", new List<DateTime>() {DateTime.Today}, new List<string>()));
-        // SaveAll(a);
-
-        string jsonString = File.ReadAllText(_fileName);
-        var foods = JsonSerializer.Deserialize<List<Food>>(jsonString);
-        if (foods == null)
-            foods = new List<Food>();
-        return foods;
-    }
-
-    public Food? Get(int id)
-    {
-        var foods = GetAll();
-        return foods.Find(x => x.Id == id);
-    }
-
-    public bool Insert(Food entity)
-    {
-        var foods = GetAll();
-        if (foods.Exists(x => x.Id == entity.Id))
-            return false;
+        var all = new List<Food>();
         
-        foods.Insert(foods.Count - 1, entity);
-        SaveAll(foods);
-        return true;
-    }
+        using var conn = new SQLiteConnection(_connectionString);
+        conn.Open();
+        const string selectFromFood = @"SELECT * FROM Food";
+        
+        using var cmd = new SQLiteCommand(selectFromFood, conn);
+        using var dr = new SQLiteDataAdapter(cmd);
+        
+        var dataTable = new DataTable();
+        dr.Fill(dataTable);
 
+        foreach (DataRow row in dataTable.Rows)
+        {
+            var id = int.Parse(row["id_food"].ToString());
+            var name = row["name"].ToString();
+            var notes = row["notes"].ToString();
+            var history = GetHistory(id);
+            var tags = row["tags"].ToString().Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
+            all.Add(new Food(id, name, notes, history, tags));
+        }
+
+        return all;
+    }
+    private List<DateTime> GetHistory(int foodId)
+    {
+        var all = new List<DateTime>();
+        
+        using var conn = new SQLiteConnection(_connectionString);
+        conn.Open();
+        var selectFromHistory = $@"SELECT * FROM History WHERE id_food='{foodId}'";
+
+        using var cmd = new SQLiteCommand(selectFromHistory, conn);
+        using var dr = new SQLiteDataAdapter(cmd);
+        
+        var dataTable = new DataTable();
+        dr.Fill(dataTable);
+
+        foreach (DataRow row in dataTable.Rows)
+        {
+            all.Add(DateTime.Parse(row["date"].ToString()));
+        }
+
+        return all;
+    }
+    public bool Insert(Food food)
+    {
+        var tags = string.Join(",", food.Tags);
+
+        var sqlInsert = $@"INSERT INTO Food (name, notes, tags) VALUES('{food.Name}','{food.Notes}','{tags}')";
+        return ExeNonQueryCommand(sqlInsert) == 1;
+    }
     public bool Update(Food entity)
     {
         var foods = GetAll();
@@ -60,21 +119,19 @@ public class FoodDataMapper : IDataMapper<Food>
         SaveAll(foods);
         return true;
     }
-
     public bool Delete(int id)
     {
         var foods = GetAll();
         var cnt = foods.RemoveAll(x => x.Id == id);
         if (cnt == 0)
             return false;
-        
+
         SaveAll(foods);
         return true;
     }
-
     public void SaveAll(List<Food> foods)
     {
-        string jsonString = JsonSerializer.Serialize(foods, new JsonSerializerOptions { WriteIndented = true });
-        File.WriteAllText(_fileName, jsonString);
+        // string jsonString = JsonSerializer.Serialize(foods, new JsonSerializerOptions {WriteIndented = true});
+        // File.WriteAllText(_fileName, jsonString);
     }
 }
