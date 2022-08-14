@@ -8,41 +8,41 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Images\close.png" />
+        <None Remove="Images\close.png"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Images\icons8-menu-rounded-50.png" />
-      <None Remove="Images\icons8-off-91.png" />
+        <None Remove="Images\icons8-menu-rounded-50.png"/>
+        <None Remove="Images\icons8-off-91.png"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Images\add.png" />
-      <Resource Include="Images\add.png" />
-      <None Remove="Images\add_active.png" />
-      <None Remove="Images\close_active.png" />
-      <Resource Include="Images\close_active.png" />
-      <None Remove="Images\food.png" />
-      <Resource Include="Images\food.png" />
-      <None Remove="Images\food_active.png" />
-      <None Remove="Images\list.png" />
-      <None Remove="Images\list_active.png" />
-      <None Remove="Fonts\PoetsenOne-Regular.ttf" />
-      <None Remove="Fonts\PentaGrams Malefissent.ttf" />
-      <None Remove="Fonts\GreatVibes-Regular.ttf" />
-      <Resource Include="Fonts\GreatVibes-Regular.ttf" />
-      <None Remove="Fonts\Raleway-Regular.ttf" />
-      <Resource Include="Fonts\Raleway-Regular.ttf" />
-      <None Remove="Images\history.png" />
-      <Resource Include="Images\history.png" />
+        <None Remove="Images\add.png"/>
+        <Resource Include="Images\add.png"/>
+        <None Remove="Images\add_active.png"/>
+        <None Remove="Images\close_active.png"/>
+        <Resource Include="Images\close_active.png"/>
+        <None Remove="Images\food.png"/>
+        <Resource Include="Images\food.png"/>
+        <None Remove="Images\food_active.png"/>
+        <None Remove="Images\list.png"/>
+        <None Remove="Images\list_active.png"/>
+        <None Remove="Fonts\PoetsenOne-Regular.ttf"/>
+        <None Remove="Fonts\PentaGrams Malefissent.ttf"/>
+        <None Remove="Fonts\GreatVibes-Regular.ttf"/>
+        <Resource Include="Fonts\GreatVibes-Regular.ttf"/>
+        <None Remove="Fonts\Raleway-Regular.ttf"/>
+        <Resource Include="Fonts\Raleway-Regular.ttf"/>
+        <None Remove="Images\history.png"/>
+        <Resource Include="Images\history.png"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Resource Include="Images\close.png" />
+        <Resource Include="Images\close.png"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116" />
+        <PackageReference Include="System.Data.SQLite.Core" Version="1.0.116"/>
     </ItemGroup>
 
 </Project>

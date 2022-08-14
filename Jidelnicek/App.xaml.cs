@@ -1,20 +1,19 @@
 ﻿using System.Windows;
 using Jidelnicek.ViewModels;
 
-namespace Jidelnicek
+namespace Jidelnicek;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    protected override void OnStartup(StartupEventArgs e)
     {
-        protected override void OnStartup(StartupEventArgs e)
+        MainWindow = new MainWindow
         {
-            MainWindow = new MainWindow()
-            {
-                DataContext = new MainViewModel(),
-                MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight
-            };
-            MainWindow.Show();
-            
-            base.OnStartup(e);
-        }
+            DataContext = new MainViewModel(),
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight
+        };
+        MainWindow.Show();
+
+        base.OnStartup(e);
     }
 }

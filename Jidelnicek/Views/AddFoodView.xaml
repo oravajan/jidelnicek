@@ -3,52 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Jidelnicek.Views"
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <TextBlock Grid.Row="0"
                    Style="{StaticResource AddFoodTitle}"
-                   Text="Přidat nové jídlo"/>
-        
+                   Text="Přidat nové jídlo" />
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
+
             <TextBlock Grid.Row="0"
                        Grid.Column="0"
                        Text="Název:"
-                       Style="{StaticResource Labels}"/>
+                       Style="{StaticResource Labels}" />
             <TextBox Grid.Row="0"
-                     Grid.Column="1" 
+                     Grid.Column="1"
                      Text="{Binding Name, Mode=TwoWay}"
-                     Style="{StaticResource Text}"/>
-            
+                     Style="{StaticResource Text}" />
+
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
                        Text="Tagy:"
-                       Style="{StaticResource Labels}"/>
+                       Style="{StaticResource Labels}" />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Text="{Binding Tags, Mode=TwoWay}"
-                     Style="{StaticResource Text}"/>
-            
+                     Style="{StaticResource Text}" />
+
             <TextBlock Grid.Row="2"
                        Grid.Column="0"
                        Text="Poznámky:"
-                       Style="{StaticResource Labels}"/>
+                       Style="{StaticResource Labels}" />
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Text="{Binding Notes, Mode=TwoWay}"
@@ -56,12 +55,12 @@
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
                      Height="100"
-                     MaxLength="255"/>
+                     MaxLength="255" />
         </Grid>
-        
+
         <Button Grid.Row="2"
                 Content="Přidat"
                 Command="{Binding AddFoodCommand}"
-                Style="{StaticResource Add}"/>
+                Style="{StaticResource Add}" />
     </Grid>
 </UserControl>

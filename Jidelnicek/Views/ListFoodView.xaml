@@ -3,16 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Jidelnicek.Views"
              mc:Ignorable="d">
     <Grid>
         <DataGrid ItemsSource="{Binding Foods}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Název" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime, StringFormat='dd-MM-yyyy'}"/>
-                <DataGridTextColumn Header="Akce"/>
+                <DataGridTextColumn Header="Název" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime, StringFormat='dd.MM.yyyy'}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Upravit" />
+                                <Button Content="Smazat" />
+                                <Button Content="Vařit"
+                                        Command="{Binding Path=DataContext.MakeFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding Id}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

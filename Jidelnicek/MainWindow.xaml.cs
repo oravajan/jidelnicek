@@ -1,16 +1,16 @@
 ﻿using System.Windows;
 
-namespace Jidelnicek
+namespace Jidelnicek;
+
+public partial class MainWindow : Window
 {
-    public partial class MainWindow : Window
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-        private void CloseBtn_OnClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        InitializeComponent();
+    }
+
+    private void CloseBtn_OnClick(object sender, RoutedEventArgs e)
+    {
+        Close();
     }
 }

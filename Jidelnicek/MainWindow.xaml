@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Jidelnicek"
         xmlns:viewModels="clr-namespace:Jidelnicek.ViewModels"
         xmlns:views="clr-namespace:Jidelnicek.Views"
         mc:Ignorable="d"
@@ -14,7 +13,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
-    
+
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="30"
                       ResizeBorderThickness="5"
@@ -23,19 +22,17 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <Border Grid.Column="0"
                 CornerRadius="20 0 0 20"
-                Background="#373459">
-        </Border>
-        
+                Background="#373459" />
+
         <Border Grid.Column="1"
                 CornerRadius="0 20 20 0"
-                Background="#423D68">
-        </Border>
+                Background="#423D68" />
 
         <StackPanel Grid.Column="0"
                     VerticalAlignment="Center">
@@ -43,56 +40,55 @@
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="ListFood">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/food.png" RenderOptions.BitmapScalingMode="Fant"/>
+                    <ImageBrush ImageSource="Images/food.png" RenderOptions.BitmapScalingMode="Fant" />
                 </Button.Background>
             </Button>
-            
+
             <Button Style="{StaticResource NavbarBtn}"
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="AddFood">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/add.png" RenderOptions.BitmapScalingMode="Fant"/>
+                    <ImageBrush ImageSource="Images/add.png" RenderOptions.BitmapScalingMode="Fant" />
                 </Button.Background>
             </Button>
-            
+
             <Button Style="{StaticResource NavbarBtn}"
                     Command="{Binding UpdateViewCommand}"
                     CommandParameter="HistoryFood">
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/history.png" RenderOptions.BitmapScalingMode="Fant"/>
+                    <ImageBrush ImageSource="Images/history.png" RenderOptions.BitmapScalingMode="Fant" />
                 </Button.Background>
             </Button>
         </StackPanel>
-        
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
+
             <TextBlock Grid.Row="0"
                        Style="{StaticResource MainTitle}"
-                       Text="Jídelníček"/>
+                       Text="Jídelníček" />
 
             <Button Grid.Row="0"
                     Style="{StaticResource CloseBtn}"
-                    Click="CloseBtn_OnClick">
-            </Button>
+                    Click="CloseBtn_OnClick" />
 
             <ContentControl Grid.Row="1"
                             Content="{Binding CurrentViewModel}"
                             Margin="20">
                 <ContentControl.Resources>
                     <DataTemplate DataType="{x:Type viewModels:AddFoodViewModel}">
-                        <views:AddFoodView/>
+                        <views:AddFoodView />
                     </DataTemplate>
-                    
+
                     <DataTemplate DataType="{x:Type viewModels:HistoryFoodViewModel}">
-                        <views:HistoryFoodView/>
+                        <views:HistoryFoodView />
                     </DataTemplate>
-                    
+
                     <DataTemplate DataType="{x:Type viewModels:ListFoodViewModel}">
-                        <views:ListFoodView/>
+                        <views:ListFoodView />
                     </DataTemplate>
                 </ContentControl.Resources>
             </ContentControl>

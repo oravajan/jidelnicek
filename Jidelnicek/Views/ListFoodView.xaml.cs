@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using Jidelnicek.ViewModels;
 
 namespace Jidelnicek.Views;
 
