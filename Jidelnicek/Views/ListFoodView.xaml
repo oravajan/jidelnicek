@@ -7,16 +7,22 @@
     <Grid>
         <DataGrid ItemsSource="{Binding Foods}"
                   AutoGenerateColumns="False"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  CanUserResizeRows="False"
+                  CanUserResizeColumns="False"
+                  CanUserSortColumns="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Název" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime, StringFormat='dd.MM.yyyy'}" />
-                <DataGridTemplateColumn>
+                <DataGridTextColumn Header="Vařeno" Binding="{Binding Cnt}" />
+                <DataGridTemplateColumn Header="Akce">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Upravit" />
-                                <Button Content="Smazat" />
+                                <Button Content="Smazat"
+                                        Command="{Binding Path=DataContext.DeleteFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding Id}" />
                                 <Button Content="Vařit"
                                         Command="{Binding Path=DataContext.MakeFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                         CommandParameter="{Binding Id}" />

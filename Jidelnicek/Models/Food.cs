@@ -31,4 +31,5 @@ public class Food
     public List<DateTime> History { get; set; }
     public List<string> Tags { get; set; }
     public DateTime LastTime => History.LastOrDefault();
+    public string Cnt => History.Count + "x";
 }

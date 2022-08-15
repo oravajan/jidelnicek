@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 using Jidelnicek.Commands;
 using Jidelnicek.DataMappers;
@@ -10,30 +11,34 @@ namespace Jidelnicek.ViewModels;
 public class ListFoodViewModel : ViewModelBase
 {
     private readonly IDataMapper<Food> _mapper;
-    private List<Food> _foods;
 
     public ListFoodViewModel()
     {
         _mapper = new FoodDataMapper();
-        _foods = _mapper.GetAll();
+        var tmp = _mapper.GetAll();
+        tmp.Sort((f1, f2) => f2.LastTime.CompareTo(f1.LastTime));
+        Foods = new BindingList<Food>(tmp);
         MakeFoodCommand = new MakeFoodCommand(MakeFood);
+        DeleteFoodCommand = new DeleteFoodCommand(DeleteFood);
     }
 
     public ICommand MakeFoodCommand { get; }
+    public ICommand DeleteFoodCommand { get; }
 
-    public List<Food> Foods
-    {
-        get => _foods;
-        set
-        {
-            _foods = value;
-            OnPropertyChanged(nameof(_foods));
-        }
-    }
+    public BindingList<Food> Foods { get; }
 
     private void MakeFood(int id)
     {
-        _foods[id - 1].History.Add(DateTime.Now);
-        _mapper.Update(_foods[id - 1]);
+        var f = Foods.Single(f => f.Id == id);
+        f.History.Add(DateTime.Now);
+        Foods.ResetItem(0);
+        _mapper.Update(f);
+    }
+
+    private void DeleteFood(int id)
+    {
+        var f = Foods.Single(f => f.Id == id);
+        Foods.Remove(f);
+        _mapper.Delete(id);
     }
 }

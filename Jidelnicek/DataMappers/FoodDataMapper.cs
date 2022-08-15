@@ -18,7 +18,7 @@ public class FoodDataMapper : IDataMapper<Food>
         // string dataPath = Path.Combine(new []{
         //     AppDomain.CurrentDomain.BaseDirectory, FileName
         // });
-        const string dataPath = @"E:\PROGRAMOVANI\Jidelnicek\Jidelnicek\Data\menu.db";
+        const string dataPath = @"E:\PROGRAMOVANI\Jidelnicek\Jidelnicek\Data\menu.db"; //TODO change this
 
         var builder = new SQLiteConnectionStringBuilder
         {
@@ -67,22 +67,19 @@ public class FoodDataMapper : IDataMapper<Food>
 
     public bool Update(Food food)
     {
+        UpdateHistory(food);
         var tags = string.Join(",", food.Tags);
         var sqlUpdate =
             $@"UPDATE Food SET name='{food.Name}', notes='{food.Notes}', tags='{tags}' WHERE id_food='{food.Id}'";
-        UpdateHistory(food);
         return ExeNonQueryCommand(sqlUpdate) == 1;
     }
 
     public bool Delete(int id)
     {
-        var foods = GetAll();
-        var cnt = foods.RemoveAll(x => x.Id == id);
-        if (cnt == 0)
-            return false;
-
-        SaveAll(foods);
-        return true;
+        var sqlDelete = $@"DELETE FROM History WHERE id_food='{id}'";
+        ExeNonQueryCommand(sqlDelete);
+        sqlDelete = $@"DELETE FROM Food WHERE id_food='{id}'";
+        return ExeNonQueryCommand(sqlDelete) == 1;
     }
 
     private void CreateDb(string dataPath)
@@ -133,7 +130,6 @@ public class FoodDataMapper : IDataMapper<Food>
 
     private void UpdateHistory(Food food)
     {
-        //var sqlInsert = $@"INSERT INTO Food (name, notes, tags) VALUES('{food.Name}','{food.Notes}','{tags}')";
         var sqlDelete = $@"DELETE FROM History WHERE id_food='{food.Id}'";
         ExeNonQueryCommand(sqlDelete);
         foreach (var date in food.History)
@@ -142,11 +138,5 @@ public class FoodDataMapper : IDataMapper<Food>
             var sqlInsert = $@"INSERT INTO History (id_food, date) VALUES('{food.Id}','{d}')";
             ExeNonQueryCommand(sqlInsert);
         }
-    }
-
-    public void SaveAll(List<Food> foods)
-    {
-        // string jsonString = JsonSerializer.Serialize(foods, new JsonSerializerOptions {WriteIndented = true});
-        // File.WriteAllText(_fileName, jsonString);
     }
 }
