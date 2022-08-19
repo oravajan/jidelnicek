@@ -8,6 +8,11 @@ namespace Jidelnicek.ViewModels;
 
 public class AddFoodViewModel : BaseViewModel
 {
+    public string? Name { get; set; }
+    public string? Tags { get; set; }
+    public string? Notes { get; set; }
+    public ICommand AddFoodCommand { get; }
+    
     private readonly IDataMapper<Food> _mapper;
 
     public AddFoodViewModel()
@@ -15,11 +20,6 @@ public class AddFoodViewModel : BaseViewModel
         _mapper = new FoodDataMapper();
         AddFoodCommand = new CommandViewModel(AddFood);
     }
-
-    public string? Name { get; set; }
-    public string? Tags { get; set; }
-    public string? Notes { get; set; }
-    public ICommand AddFoodCommand { get; }
 
     private void AddFood(object? obj)
     {

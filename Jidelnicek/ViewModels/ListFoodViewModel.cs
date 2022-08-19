@@ -9,35 +9,33 @@ namespace Jidelnicek.ViewModels;
 
 public class ListFoodViewModel : BaseViewModel
 {
-    private readonly IDataMapper<Food> _mapper;
-
-    public ListFoodViewModel()
-    {
-        IsOpen = false;
-        _mapper = new FoodDataMapper();
-        var tmp = _mapper.GetAll();
-        tmp.Sort((f1, f2) => f2.LastTime.CompareTo(f1.LastTime));
-        Foods = new BindingList<Food>(tmp);
-        MakeFoodCommand = new CommandViewModel(MakeFood);
-        DeleteFoodCommand = new CommandViewModel(DeleteFood);
-        EditFoodCommand = new CommandViewModel(ShowEdit);
-    }
-
+    public BindingList<Food> Foods { get; }
     public ICommand MakeFoodCommand { get; }
     public ICommand DeleteFoodCommand { get; }
     public ICommand EditFoodCommand { get; }
-
-    public BindingList<Food> Foods { get; }
-    private bool _isOpen;
     public bool IsOpen
     {
         get { return _isOpen; }
         set
         {
-            if (_isOpen == value) return;
             _isOpen = value;
             OnPropertyChanged("IsOpen");
         }
+    }
+    
+    private readonly IDataMapper<Food> _mapper;
+    private bool _isOpen;
+
+    public ListFoodViewModel()
+    {
+        IsOpen = false;
+        _mapper = new FoodDataMapper();
+        var tmp = _mapper.GetAll().ToList();
+        tmp.Sort((f1, f2) => f2.LastTime.CompareTo(f1.LastTime));
+        Foods = new BindingList<Food>(tmp);
+        MakeFoodCommand = new CommandViewModel(MakeFood);
+        DeleteFoodCommand = new CommandViewModel(DeleteFood);
+        EditFoodCommand = new CommandViewModel(ShowEdit);
     }
 
     private void MakeFood(object? obj)

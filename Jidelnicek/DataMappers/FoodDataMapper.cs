@@ -10,13 +10,12 @@ namespace Jidelnicek.DataMappers;
 
 public class FoodDataMapper : IDataMapper<Food>
 {
-    private const string FileName = "menu.db";
     private readonly string _connectionString;
 
     public FoodDataMapper()
     {
         string dataPath = Path.Combine(new []{
-            AppDomain.CurrentDomain.BaseDirectory, FileName
+            AppDomain.CurrentDomain.BaseDirectory, "menu.db"
         });
 
         var builder = new SQLiteConnectionStringBuilder
@@ -29,7 +28,7 @@ public class FoodDataMapper : IDataMapper<Food>
             CreateDb(dataPath);
     }
 
-    public List<Food> GetAll()
+    public IEnumerable<Food> GetAll()
     {
         var all = new List<Food>();
 

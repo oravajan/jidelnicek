@@ -4,7 +4,7 @@ namespace Jidelnicek.DataMappers;
 
 public interface IDataMapper<T>
 {
-    List<T> GetAll();
+    IEnumerable<T> GetAll();
     bool Insert(T entity);
     bool Update(T entity);
     bool Delete(int id);

@@ -4,14 +4,6 @@ namespace Jidelnicek.ViewModels;
 
 public class MainViewModel : BaseViewModel
 {
-    private BaseViewModel _currentViewModel;
-
-    public MainViewModel()
-    {
-        _currentViewModel = new ListFoodViewModel();
-        UpdateViewCommand = new CommandViewModel(UpdateView);
-    }
-
     public BaseViewModel CurrentViewModel
     {
         get => _currentViewModel;
@@ -21,8 +13,15 @@ public class MainViewModel : BaseViewModel
             OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
-
     public ICommand UpdateViewCommand { get; }
+    
+    private BaseViewModel _currentViewModel;
+
+    public MainViewModel()
+    {
+        _currentViewModel = new ListFoodViewModel();
+        UpdateViewCommand = new CommandViewModel(UpdateView);
+    }
 
     private void UpdateView(object? obj)
     {
