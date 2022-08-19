@@ -15,10 +15,9 @@ public class FoodDataMapper : IDataMapper<Food>
 
     public FoodDataMapper()
     {
-        // string dataPath = Path.Combine(new []{
-        //     AppDomain.CurrentDomain.BaseDirectory, FileName
-        // });
-        const string dataPath = @"E:\PROGRAMOVANI\Jidelnicek\Jidelnicek\Data\menu.db"; //TODO change this
+        string dataPath = Path.Combine(new []{
+            AppDomain.CurrentDomain.BaseDirectory, FileName
+        });
 
         var builder = new SQLiteConnectionStringBuilder
         {

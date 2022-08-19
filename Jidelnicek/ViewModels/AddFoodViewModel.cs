@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Input;
-using Jidelnicek.Commands;
 using Jidelnicek.DataMappers;
 using Jidelnicek.Models;
 
 namespace Jidelnicek.ViewModels;
 
-public class AddFoodViewModel : ViewModelBase
+public class AddFoodViewModel : BaseViewModel
 {
     private readonly IDataMapper<Food> _mapper;
 
     public AddFoodViewModel()
     {
         _mapper = new FoodDataMapper();
-        AddFoodCommand = new AddFoodCommand(this);
+        AddFoodCommand = new CommandViewModel(AddFood);
     }
 
     public string? Name { get; set; }
@@ -22,7 +21,7 @@ public class AddFoodViewModel : ViewModelBase
     public string? Notes { get; set; }
     public ICommand AddFoodCommand { get; }
 
-    public void AddFood()
+    private void AddFood(object? obj)
     {
         if (Name is "" or null)
             return;

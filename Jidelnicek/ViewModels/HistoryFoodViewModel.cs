@@ -5,11 +5,10 @@ using Jidelnicek.Models;
 
 namespace Jidelnicek.ViewModels;
 
-public class HistoryFoodViewModel : ViewModelBase
+public class HistoryFoodViewModel : BaseViewModel
 {
     private readonly IDataMapper<Food> _mapper;
     private List<Food> _foods;
-
 
     public HistoryFoodViewModel()
     {
@@ -24,7 +23,7 @@ public class HistoryFoodViewModel : ViewModelBase
         set
         {
             _foods = value;
-            OnPropertyChanged(nameof(_foods));
+            OnPropertyChanged(nameof(Foods));
         }
     }
 

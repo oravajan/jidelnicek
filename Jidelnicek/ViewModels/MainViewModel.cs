@@ -1,19 +1,18 @@
 ﻿using System.Windows.Input;
-using Jidelnicek.Commands;
 
 namespace Jidelnicek.ViewModels;
 
-public class MainViewModel : ViewModelBase
+public class MainViewModel : BaseViewModel
 {
-    private ViewModelBase _currentViewModel;
+    private BaseViewModel _currentViewModel;
 
     public MainViewModel()
     {
         _currentViewModel = new ListFoodViewModel();
-        UpdateViewCommand = new UpdateViewCommand(this);
+        UpdateViewCommand = new CommandViewModel(UpdateView);
     }
 
-    public ViewModelBase CurrentViewModel
+    public BaseViewModel CurrentViewModel
     {
         get => _currentViewModel;
         set
@@ -24,4 +23,15 @@ public class MainViewModel : ViewModelBase
     }
 
     public ICommand UpdateViewCommand { get; }
+
+    private void UpdateView(object? obj)
+    {
+        CurrentViewModel = obj?.ToString() switch
+        {
+            "AddFood" => new AddFoodViewModel(),
+            "HistoryFood" => new HistoryFoodViewModel(),
+            "ListFood" => new ListFoodViewModel(),
+            _ => CurrentViewModel
+        };
+    }
 }
