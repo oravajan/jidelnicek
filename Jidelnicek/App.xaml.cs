@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Jidelnicek.ViewModels;
+using Jidelnicek.Views;
 
 namespace Jidelnicek;
 
@@ -9,8 +10,7 @@ public partial class App : Application
     {
         MainWindow = new MainWindow
         {
-            DataContext = new MainViewModel(),
-            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight
+            DataContext = new MainViewModel()
         };
         MainWindow.Show();
 

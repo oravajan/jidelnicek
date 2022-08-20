@@ -10,7 +10,8 @@
                   IsReadOnly="True"
                   CanUserResizeRows="False"
                   CanUserResizeColumns="False"
-                  CanUserSortColumns="True">
+                  CanUserSortColumns="True"
+                  VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Název" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime, StringFormat='dd.MM.yyyy'}" />
@@ -20,7 +21,8 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Button Content="Upravit" 
-                                        Command="{Binding Path=DataContext.EditFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                        Command="{Binding Path=DataContext.EditFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding Id}" />
                                 <Button Content="Smazat"
                                         Command="{Binding Path=DataContext.DeleteFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                         CommandParameter="{Binding Id}" />
@@ -33,11 +35,5 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Popup IsOpen="{Binding IsOpen}"
-               Placement="Center">
-            <Border Background="White">
-                <TextBlock Margin="20" Text="I'm Popped Up!"/>
-            </Border>
-        </Popup>
     </Grid>
 </UserControl>

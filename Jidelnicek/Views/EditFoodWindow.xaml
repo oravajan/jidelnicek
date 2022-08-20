@@ -1,0 +1,95 @@
+﻿<Window x:Class="Jidelnicek.Views.EditFoodWindow"
+        x:Name="EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="Upravit jídlo"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent">
+    <Border Background="Aqua">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Text="Upravit jídlo" />
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Text="Název:" />
+                <TextBox Grid.Row="0"
+                         Grid.Column="1"
+                         Text="{Binding Name, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Text="Tagy:" />
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
+                         Text="{Binding Tags, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Text="Poznámky:" />
+                <TextBox Grid.Row="2"
+                         Grid.Column="1"
+                         Text="{Binding Notes, Mode=TwoWay}"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         Height="100"
+                         MaxLength="2000"
+                         VerticalScrollBarVisibility="Auto" />
+            </Grid>
+            <!-- <DatePicker Grid.Row="2" -->
+            <!--             SelectedDate="{Binding MojeDatum}"/> -->
+            <DataGrid Grid.Row="2"
+                      ItemsSource="{Binding History}"
+                      AutoGenerateColumns="False"
+                      CanUserResizeRows="False"
+                      CanUserResizeColumns="False"
+                      CanUserSortColumns="True"
+                      VerticalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Datum">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Path=Date, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal">
+                <Button Content="Uložit změny"
+                        Command="{Binding SaveCommand}"
+                        CommandParameter="{Binding ElementName=EditWindow}" />
+                <Button Content="Zrušit"
+                        Command="{Binding CloseCommand}"
+                        CommandParameter="{Binding ElementName=EditWindow}" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

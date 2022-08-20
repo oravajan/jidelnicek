@@ -86,7 +86,7 @@ public class FoodDataMapper : IDataMapper<Food>
         const string sqlCreateFood = @"CREATE TABLE Food(
                                         id_food INTEGER PRIMARY KEY, 
                                         name varchar(30) NOT NULL, 
-                                        notes varchar(100) NOT NULL,
+                                        notes varchar(2000) NOT NULL,
                                         tags varchar(200) NOT NULL
                  )";
         const string sqlCreateHistory = @"CREATE TABLE History(

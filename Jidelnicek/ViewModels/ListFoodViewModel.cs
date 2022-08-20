@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using Jidelnicek.DataMappers;
 using Jidelnicek.Models;
+using Jidelnicek.Views;
 
 namespace Jidelnicek.ViewModels;
 
@@ -13,22 +15,11 @@ public class ListFoodViewModel : BaseViewModel
     public ICommand MakeFoodCommand { get; }
     public ICommand DeleteFoodCommand { get; }
     public ICommand EditFoodCommand { get; }
-    public bool IsOpen
-    {
-        get { return _isOpen; }
-        set
-        {
-            _isOpen = value;
-            OnPropertyChanged("IsOpen");
-        }
-    }
-    
+
     private readonly IDataMapper<Food> _mapper;
-    private bool _isOpen;
 
     public ListFoodViewModel()
     {
-        IsOpen = false;
         _mapper = new FoodDataMapper();
         var tmp = _mapper.GetAll().ToList();
         tmp.Sort((f1, f2) => f2.LastTime.CompareTo(f1.LastTime));
@@ -61,6 +52,15 @@ public class ListFoodViewModel : BaseViewModel
 
     private void ShowEdit(object? obj)
     {
-        IsOpen = true;
+        if (obj == null)
+            return;
+        var id = (int) obj;
+        var f = Foods.Single(f => f.Id == id);
+        EditFoodWindow w = new EditFoodWindow()
+        {
+            DataContext = new EditFoodViewModel(_mapper, f)
+        };
+        w.ShowDialog();
+        Foods.ResetItem(0);
     }
 }
