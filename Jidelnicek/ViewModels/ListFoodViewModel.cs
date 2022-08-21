@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using Jidelnicek.DataMappers;
 using Jidelnicek.Models;
@@ -12,6 +13,17 @@ namespace Jidelnicek.ViewModels;
 
 public class ListFoodViewModel : BaseViewModel
 {
+    public ICollectionView FoodView { get; }
+    public string Filter
+    {
+        get => _filter;
+        set
+        {
+            _filter = value;
+            OnPropertyChanged(nameof(Filter));
+            FoodView.Refresh();
+        }
+    }
     public BindingList<Food> Foods { get; }
     public ICommand MakeFoodCommand { get; }
     public ICommand DeleteFoodCommand { get; }
@@ -19,6 +31,7 @@ public class ListFoodViewModel : BaseViewModel
 
     private readonly IDataMapper<Food> _mapper;
     private List<Food> _back;
+    private string _filter = string.Empty;
 
     public ListFoodViewModel()
     {
@@ -26,9 +39,27 @@ public class ListFoodViewModel : BaseViewModel
         _back = _mapper.GetAll().ToList();
         _back.Sort(LastTimeCompare);
         Foods = new BindingList<Food>(_back);
+        FoodView = CollectionViewSource.GetDefaultView(_back);
+        FoodView.Filter = FilterFood;
+        
         MakeFoodCommand = new CommandViewModel(MakeFood);
         DeleteFoodCommand = new CommandViewModel(DeleteFood);
         EditFoodCommand = new CommandViewModel(ShowEdit);
+    }
+
+    private bool FilterFood(object obj)
+    {
+        if (obj is Food f)
+        {
+            if (f.Name.Contains(Filter))
+                return true;
+            foreach (var tag in f.Tags)
+            {
+                if (tag.Contains(Filter))
+                    return true;
+            }
+        }
+        return false;
     }
 
     private int LastTimeCompare(Food f1, Food f2)
@@ -54,7 +85,7 @@ public class ListFoodViewModel : BaseViewModel
         f.History.Sort((d1, d2) => d2.CompareTo(d1));
         _back.Sort(LastTimeCompare);
         _mapper.Update(f);
-        Foods.ResetBindings();
+        FoodView.Refresh();
     }
 
     private void DeleteFood(object? obj)
@@ -65,6 +96,7 @@ public class ListFoodViewModel : BaseViewModel
         var f = Foods.Single(f => f.Id == id);
         Foods.Remove(f);
         _mapper.Delete(id);
+        FoodView.Refresh();
     }
 
     private void ShowEdit(object? obj)
@@ -79,6 +111,6 @@ public class ListFoodViewModel : BaseViewModel
         };
         w.ShowDialog();
         _back.Sort(LastTimeCompare);
-        Foods.ResetBindings();
+        FoodView.Refresh();
     }
 }

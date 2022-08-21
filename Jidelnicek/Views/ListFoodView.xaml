@@ -5,7 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
     <Grid>
-        <DataGrid ItemsSource="{Binding Foods}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0"
+                 Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <DataGrid Grid.Row="1" 
+                  ItemsSource="{Binding FoodView}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserResizeRows="False"
