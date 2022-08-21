@@ -24,22 +24,20 @@ public class ListFoodViewModel : BaseViewModel
             FoodView.Refresh();
         }
     }
-    public BindingList<Food> Foods { get; }
     public ICommand MakeFoodCommand { get; }
     public ICommand DeleteFoodCommand { get; }
     public ICommand EditFoodCommand { get; }
 
     private readonly IDataMapper<Food> _mapper;
-    private List<Food> _back;
+    private List<Food> _food;
     private string _filter = string.Empty;
 
     public ListFoodViewModel()
     {
         _mapper = new FoodDataMapper();
-        _back = _mapper.GetAll().ToList();
-        _back.Sort(LastTimeCompare);
-        Foods = new BindingList<Food>(_back);
-        FoodView = CollectionViewSource.GetDefaultView(_back);
+        _food = _mapper.GetAll().ToList();
+        _food.Sort(LastTimeCompare);
+        FoodView = CollectionViewSource.GetDefaultView(_food);
         FoodView.Filter = FilterFood;
         
         MakeFoodCommand = new CommandViewModel(MakeFood);
@@ -49,17 +47,11 @@ public class ListFoodViewModel : BaseViewModel
 
     private bool FilterFood(object obj)
     {
-        if (obj is Food f)
-        {
-            if (f.Name.Contains(Filter))
-                return true;
-            foreach (var tag in f.Tags)
-            {
-                if (tag.Contains(Filter))
-                    return true;
-            }
-        }
-        return false;
+        if (obj is not Food f) 
+            return false;
+        if (f.Name.Contains(Filter, StringComparison.CurrentCultureIgnoreCase))
+            return true;
+        return f.Tags.Any(tag => tag.Contains(Filter, StringComparison.CurrentCultureIgnoreCase));
     }
 
     private int LastTimeCompare(Food f1, Food f2)
@@ -80,10 +72,10 @@ public class ListFoodViewModel : BaseViewModel
         if (obj == null)
             return;
         var id = (int) obj;
-        var f = Foods.Single(f => f.Id == id);
+        var f = _food.Single(f => f.Id == id);
         f.History.Add(DateTime.Now);
         f.History.Sort((d1, d2) => d2.CompareTo(d1));
-        _back.Sort(LastTimeCompare);
+        _food.Sort(LastTimeCompare);
         _mapper.Update(f);
         FoodView.Refresh();
     }
@@ -92,9 +84,12 @@ public class ListFoodViewModel : BaseViewModel
     {
         if (obj == null)
             return;
+        var res = MessageBox.Show("Opravdu smazat?", "Smazat", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        if (res == MessageBoxResult.No)
+            return;
         var id = (int) obj;
-        var f = Foods.Single(f => f.Id == id);
-        Foods.Remove(f);
+        var f = _food.Single(f => f.Id == id);
+        _food.Remove(f);
         _mapper.Delete(id);
         FoodView.Refresh();
     }
@@ -104,13 +99,13 @@ public class ListFoodViewModel : BaseViewModel
         if (obj == null)
             return;
         var id = (int) obj;
-        var f = Foods.Single(f => f.Id == id);
+        var f = _food.Single(f => f.Id == id);
         EditFoodWindow w = new EditFoodWindow()
         {
             DataContext = new EditFoodViewModel(_mapper, f)
         };
         w.ShowDialog();
-        _back.Sort(LastTimeCompare);
+        _food.Sort(LastTimeCompare);
         FoodView.Refresh();
     }
 }
