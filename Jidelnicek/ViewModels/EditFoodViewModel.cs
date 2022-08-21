@@ -43,12 +43,13 @@ public class EditFoodViewModel : BaseViewModel
         Tags = string.Join(",", _food.Tags);
         Notes = _food.Notes;
         
-        _food.History.Sort((d1, d2) => d2.CompareTo(d1));
         _back = new List<MyDateWrapper>();
         foreach (var dateTime in _food.History)
         {
             _back.Add(new MyDateWrapper(dateTime));
         }
+
+        _back.Reverse();
         History = new BindingList<MyDateWrapper>(_back);
 
         SaveCommand = new CommandViewModel(Save, (o => Name != ""));
@@ -67,6 +68,7 @@ public class EditFoodViewModel : BaseViewModel
             _food.History.Add(dateWrapper.Date);
         }
 
+        _food.History.Sort();
         _mapper.Update(_food);
         Close(obj);
     }

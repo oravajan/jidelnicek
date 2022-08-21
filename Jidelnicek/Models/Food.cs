@@ -22,7 +22,6 @@ public class Food
         History = history;
         History.Sort();
         Tags = tags;
-        History.Sort();
     }
 
     public Food(string name, string notes, List<string> tags)
