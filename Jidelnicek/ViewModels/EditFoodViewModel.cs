@@ -25,28 +25,35 @@ public class EditFoodViewModel : BaseViewModel
     public string Name { get; set; }
     public string Notes { get; set; }
     public string Tags { get; set; }
-    public List<MyDateWrapper> History { get; set; }
+    public BindingList<MyDateWrapper> History { get; set; }
     public ICommand SaveCommand { get; }
     public ICommand CloseCommand { get; }
+    public ICommand MakeFoodCommand { get; }
     
     private Food _food;
     private IDataMapper<Food> _mapper;
+    private List<MyDateWrapper> _back;
 
     public EditFoodViewModel(IDataMapper<Food> mapper, Food food)
     {
         _mapper = mapper;
         _food = food;
+        
         Name = _food.Name;
         Tags = string.Join(",", _food.Tags);
         Notes = _food.Notes;
-        History = new List<MyDateWrapper>();
+        
+        _food.History.Sort((d1, d2) => d2.CompareTo(d1));
+        _back = new List<MyDateWrapper>();
         foreach (var dateTime in _food.History)
         {
-            History.Add(new MyDateWrapper(dateTime));
+            _back.Add(new MyDateWrapper(dateTime));
         }
+        History = new BindingList<MyDateWrapper>(_back);
 
-        SaveCommand = new CommandViewModel(Save);
+        SaveCommand = new CommandViewModel(Save, (o => Name != ""));
         CloseCommand = new CommandViewModel(Close);
+        MakeFoodCommand = new CommandViewModel(MakeFood);
     }
 
     private void Save(object? obj)
@@ -59,8 +66,8 @@ public class EditFoodViewModel : BaseViewModel
         {
             _food.History.Add(dateWrapper.Date);
         }
-        if (!_mapper.Update(_food))
-            _mapper.Insert(_food);
+
+        _mapper.Update(_food);
         Close(obj);
     }
 
@@ -70,5 +77,12 @@ public class EditFoodViewModel : BaseViewModel
             return;
         var win = (Window) obj;
         win.Close();
+    }
+
+    private void MakeFood(object? obj)
+    {
+        _back.Add(new MyDateWrapper(DateTime.Now));
+        _back.Sort((d1, d2) => d2.Date.CompareTo(d1.Date));
+        History.ResetBindings();
     }
 }

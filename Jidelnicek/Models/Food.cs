@@ -11,7 +11,7 @@ public class Food
     public string Notes { get; set; }
     public List<DateTime> History { get; set; }
     public List<string> Tags { get; set; }
-    public DateTime LastTime => History.LastOrDefault();
+    public string LastTime => History.Count == 0 ? "Nevařeno" : History.Last().ToString("dd.MM.yyyy");
     public string Cnt => History.Count + "x";
     
     public Food(int id, string name, string notes, List<DateTime> history, List<string> tags)

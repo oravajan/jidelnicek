@@ -11,9 +11,12 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
-    <Border Background="Aqua">
+    <Border Background="WhiteSmoke"
+            BorderBrush="Black"
+            BorderThickness="3">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -40,7 +43,7 @@
                            Text="Název:" />
                 <TextBox Grid.Row="0"
                          Grid.Column="1"
-                         Text="{Binding Name, Mode=TwoWay}" />
+                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
@@ -61,15 +64,18 @@
                          MaxLength="2000"
                          VerticalScrollBarVisibility="Auto" />
             </Grid>
-            <!-- <DatePicker Grid.Row="2" -->
-            <!--             SelectedDate="{Binding MojeDatum}"/> -->
-            <DataGrid Grid.Row="2"
+            
+            <Button Grid.Row="2"
+                    Content="Vařit"
+                    Command="{Binding MakeFoodCommand}" />
+            
+            <DataGrid Grid.Row="3"
                       ItemsSource="{Binding History}"
                       AutoGenerateColumns="False"
                       CanUserResizeRows="False"
                       CanUserResizeColumns="False"
-                      CanUserSortColumns="True"
-                      VerticalScrollBarVisibility="Auto">
+                      VerticalScrollBarVisibility="Auto"
+                      IsSynchronizedWithCurrentItem="True">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Datum">
                         <DataGridTemplateColumn.CellTemplate>
@@ -78,10 +84,18 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Akce">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Smazat"
+                                        Command="Delete"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
-            <StackPanel Grid.Row="3"
+            
+            <StackPanel Grid.Row="4"
                         Orientation="Horizontal">
                 <Button Content="Uložit změny"
                         Command="{Binding SaveCommand}"

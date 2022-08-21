@@ -14,7 +14,7 @@
                   VerticalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Název" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime, StringFormat='dd.MM.yyyy'}" />
+                <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime}" />
                 <DataGridTextColumn Header="Vařeno" Binding="{Binding Cnt}" />
                 <DataGridTemplateColumn Header="Akce">
                     <DataGridTemplateColumn.CellTemplate>

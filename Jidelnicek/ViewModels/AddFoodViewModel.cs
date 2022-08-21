@@ -46,17 +46,11 @@ public class AddFoodViewModel : BaseViewModel
     public AddFoodViewModel()
     {
         _mapper = new FoodDataMapper();
-        AddFoodCommand = new CommandViewModel(AddFood);
+        AddFoodCommand = new CommandViewModel(AddFood, o => _name != "");
     }
 
     private void AddFood(object? obj)
     {
-        if (Name == "")
-        {
-            MessageBox.Show("Jídlo musí mít nějaký název!", "Chyba", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Cancel);
-            return;
-        }
-        
         var tags = Tags.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList();
         var newFood = new Food(Name, Notes, tags);
 
