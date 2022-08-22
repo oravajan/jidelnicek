@@ -5,92 +5,118 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:Jidelnicek.ViewModels"
         xmlns:views="clr-namespace:Jidelnicek.Views"
+        xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="Jídelníček"
-        Height="680"
-        Width="900"
+        Height="600"
+        MinHeight="370"
+        Width="800"
+        MinWidth="500"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="30"
+        <WindowChrome CaptionHeight="40"
                       ResizeBorderThickness="5" />
     </WindowChrome.WindowChrome>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Border Grid.Column="0"
-                CornerRadius="20 0 0 20"
-                Background="#373459" />
-
-        <Border Grid.Column="1"
-                CornerRadius="0 20 20 0"
-                Background="#423D68" />
-
-        <StackPanel Grid.Column="0"
-                    VerticalAlignment="Center">
-            <Button Style="{StaticResource NavbarBtn}"
-                    Command="{Binding UpdateViewCommand}"
-                    CommandParameter="ListFood">
-                <Button.Background>
-                    <ImageBrush ImageSource="../Images/food.png" RenderOptions.BitmapScalingMode="Fant" />
-                </Button.Background>
-            </Button>
-
-            <Button Style="{StaticResource NavbarBtn}"
-                    Command="{Binding UpdateViewCommand}"
-                    CommandParameter="AddFood">
-                <Button.Background>
-                    <ImageBrush ImageSource="../Images/add.png" RenderOptions.BitmapScalingMode="Fant" />
-                </Button.Background>
-            </Button>
-
-            <Button Style="{StaticResource NavbarBtn}"
-                    Command="{Binding UpdateViewCommand}"
-                    CommandParameter="HistoryFood">
-                <Button.Background>
-                    <ImageBrush ImageSource="../Images/history.png" RenderOptions.BitmapScalingMode="Fant" />
-                </Button.Background>
-            </Button>
-        </StackPanel>
-
-        <Grid Grid.Column="1">
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            BorderBrush="{StaticResource BorderColor}">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0"
-                       Style="{StaticResource MainTitle}"
-                       Text="Jídelníček" />
-
-            <Button Grid.Row="0"
-                    Style="{StaticResource CloseBtn}"
-                    Click="CloseBtn_OnClick" />
-
-            <ContentControl Grid.Row="1"
-                            Content="{Binding CurrentViewModel}"
-                            Margin="20">
-                <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type viewModels:AddFoodViewModel}">
-                        <views:AddFoodView />
-                    </DataTemplate>
-
-                    <DataTemplate DataType="{x:Type viewModels:HistoryFoodViewModel}">
-                        <views:HistoryFoodView />
-                    </DataTemplate>
-
-                    <DataTemplate DataType="{x:Type viewModels:ListFoodViewModel}">
-                        <views:ListFoodView />
-                    </DataTemplate>
-                </ContentControl.Resources>
-            </ContentControl>
+        
+            <Border Grid.Row="0"
+                    CornerRadius="15,15,0,0"
+                    Background="{StaticResource Primary1}" />
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal"
+                        FlowDirection="RightToLeft"
+                        Margin="5">
+                <Button Style="{StaticResource WindowButton}"
+                        WindowChrome.IsHitTestVisibleInChrome="True"
+                        Click="CloseBtn_OnClick">
+                    <icon:PackIconMaterial Kind="CloseCircle" />
+                </Button>
+                <Button Style="{StaticResource WindowButton}"
+                        WindowChrome.IsHitTestVisibleInChrome="True"
+                        Click="MaximizeBtn_OnClick">
+                    <icon:PackIconMaterial Kind="WindowMaximize" />
+                </Button>
+                <Button Style="{StaticResource WindowButton}"
+                        WindowChrome.IsHitTestVisibleInChrome="True"
+                        Click="MinimizeBtn_OnClick">
+                    <icon:PackIconMaterial Kind="WindowMinimize" />
+                </Button>
+            </StackPanel>
+        
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0"
+                        CornerRadius="0, 0, 0, 15"
+                        Background="{StaticResource Primary2}"/>
+                <TextBlock Grid.Column="0"
+                           Style="{StaticResource MainTitle}"
+                           Text="Jídelníček"/>
+                <StackPanel Grid.Column="0"
+                            VerticalAlignment="Center">
+                    <RadioButton Style="{StaticResource MenuButton}"
+                                 IsChecked="True"
+                                 Command="{Binding UpdateViewCommand}"
+                                 CommandParameter="ListFood">
+                        <StackPanel Orientation="Horizontal">
+                            <icon:PackIconMaterial Kind="Home" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock Text="Jídla" Style="{StaticResource MenuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource MenuButton}"
+                                 Command="{Binding UpdateViewCommand}"
+                                 CommandParameter="AddFood">
+                        <StackPanel Orientation="Horizontal">
+                            <icon:PackIconMaterial Kind="PlusCircle" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock Text="Přidat jídlo" Style="{StaticResource MenuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource MenuButton}"
+                                 Command="{Binding UpdateViewCommand}"
+                                 CommandParameter="HistoryFood">
+                        <StackPanel Orientation="Horizontal">
+                            <icon:PackIconMaterial Kind="History" Style="{StaticResource MenuButtonIcon}"/>
+                            <TextBlock Text="Historie" Style="{StaticResource MenuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+                
+                <Border Grid.Column="1"
+                        CornerRadius="0, 0, 15, 0"
+                        Background="{StaticResource Secondary2}"/>
+                <ContentControl Grid.Column="1"
+                                Margin="10"
+                                Content="{Binding CurrentViewModel}">
+                    <ContentControl.Resources>
+                        <DataTemplate DataType="{x:Type viewModels:AddFoodViewModel}">
+                            <views:AddFoodView />
+                        </DataTemplate>
+                
+                        <DataTemplate DataType="{x:Type viewModels:HistoryFoodViewModel}">
+                            <views:HistoryFoodView />
+                        </DataTemplate>
+                
+                        <DataTemplate DataType="{x:Type viewModels:ListFoodViewModel}">
+                            <views:ListFoodView />
+                        </DataTemplate>
+                    </ContentControl.Resources>
+                </ContentControl>
+            </Grid>
         </Grid>
-    </Grid>
+    </Border>
 </Window>
