@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Jídelníček"
         Height="600"
-        MinHeight="370"
+        MinHeight="430"
         Width="800"
         MinWidth="500"
         WindowStartupLocation="CenterScreen"
@@ -100,7 +100,7 @@
                         CornerRadius="0, 0, 15, 0"
                         Background="{StaticResource Secondary2}"/>
                 <ContentControl Grid.Column="1"
-                                Margin="10"
+                                Margin="20"
                                 Content="{Binding CurrentViewModel}">
                     <ContentControl.Resources>
                         <DataTemplate DataType="{x:Type viewModels:AddFoodViewModel}">

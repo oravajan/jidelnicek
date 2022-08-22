@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
@@ -33,7 +34,8 @@
             <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource Text}" />
+                     Style="{StaticResource Text}">
+            </TextBox>
 
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
@@ -54,13 +56,14 @@
                      Style="{StaticResource Text}"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
-                     Height="100"
-                     MaxLength="255" />
+                     MaxLines="4"
+                     MaxLength="2000"
+                     VerticalScrollBarVisibility="Auto" />
         </Grid>
 
         <Button Grid.Row="2"
                 Content="Přidat"
                 Command="{Binding AddFoodCommand}"
-                Style="{StaticResource Add}" />
+                Style="{StaticResource AddButton}" />
     </Grid>
 </UserControl>
