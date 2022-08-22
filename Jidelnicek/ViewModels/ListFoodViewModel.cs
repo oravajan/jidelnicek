@@ -49,9 +49,18 @@ public class ListFoodViewModel : BaseViewModel
     {
         if (obj is not Food f) 
             return false;
-        if (f.Name.Contains(Filter, StringComparison.CurrentCultureIgnoreCase))
+        if (Filter == string.Empty)
             return true;
-        return f.Tags.Any(tag => tag.Contains(Filter, StringComparison.CurrentCultureIgnoreCase));
+        var filters = Filter.Split(',', StringSplitOptions.RemoveEmptyEntries);
+        foreach (var filter in filters)
+        {
+            if (f.Name.Contains(filter, StringComparison.CurrentCultureIgnoreCase))
+                return true;
+            if (f.Tags.Any(tag => tag.Contains(filter, StringComparison.CurrentCultureIgnoreCase)))
+                return true;
+        }
+        
+        return false;
     }
 
     private int LastTimeCompare(Food f1, Food f2)
