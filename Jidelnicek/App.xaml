@@ -6,6 +6,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/MainWindowStyles.xaml" />
                 <ResourceDictionary Source="Styles/AddFoodStyles.xaml" />
+                <ResourceDictionary Source="Styles/ListFoodStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -9,16 +9,30 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.Column="0"
+                   Text="Vyhledávání:"
+                   Style="{StaticResource SearchLabel}" />
         <TextBox Grid.Row="0"
-                 Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <DataGrid Grid.Row="1" 
+                 Grid.Column="1"
+                 Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Style="{StaticResource SearchBar}" />
+        <DataGrid Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
                   ItemsSource="{Binding FoodView}"
+                  Style="{StaticResource MainGrid}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserResizeRows="False"
                   CanUserResizeColumns="False"
                   CanUserSortColumns="True"
-                  VerticalScrollBarVisibility="Auto">
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Název" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime}" />
@@ -27,15 +41,18 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Upravit" 
-                                        Command="{Binding Path=DataContext.EditFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                        CommandParameter="{Binding Id}" />
-                                <Button Content="Smazat"
-                                        Command="{Binding Path=DataContext.DeleteFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                        CommandParameter="{Binding Id}" />
                                 <Button Content="Vařit"
                                         Command="{Binding Path=DataContext.MakeFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                        CommandParameter="{Binding Id}" />
+                                        CommandParameter="{Binding Id}"
+                                        Style="{StaticResource GridButton}" />
+                                <Button Content="Upravit"
+                                        Command="{Binding Path=DataContext.EditFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding Id}"
+                                        Style="{StaticResource GridButton}" />
+                                <Button Content="Smazat"
+                                        Command="{Binding Path=DataContext.DeleteFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding Id}"
+                                        Style="{StaticResource GridButton}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

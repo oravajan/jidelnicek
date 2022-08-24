@@ -18,12 +18,9 @@
 
     <ItemGroup>
         <None Remove="Images\add.png" />
-        <Resource Include="Images\add.png" />
         <None Remove="Images\add_active.png" />
         <None Remove="Images\close_active.png" />
-        <Resource Include="Images\close_active.png" />
         <None Remove="Images\food.png" />
-        <Resource Include="Images\food.png" />
         <None Remove="Images\food_active.png" />
         <None Remove="Images\list.png" />
         <None Remove="Images\list_active.png" />
@@ -32,13 +29,7 @@
         <None Remove="Fonts\GreatVibes-Regular.ttf" />
         <Resource Include="Fonts\GreatVibes-Regular.ttf" />
         <None Remove="Fonts\Raleway-Regular.ttf" />
-        <Resource Include="Fonts\Raleway-Regular.ttf" />
         <None Remove="Images\history.png" />
-        <Resource Include="Images\history.png" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Resource Include="Images\close.png" />
     </ItemGroup>
 
     <ItemGroup>

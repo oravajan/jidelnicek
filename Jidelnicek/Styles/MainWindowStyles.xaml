@@ -3,7 +3,7 @@
                     xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks">
     <!--Color Palette-->
     <SolidColorBrush x:Key="BorderColor" Color="#9A9fA6" />
-    <SolidColorBrush x:Key="Primary1" Color="#0A295A" />
+    <SolidColorBrush x:Key="Primary1" Color="#062556" />
     <SolidColorBrush x:Key="Primary2" Color="#0E2D5E" />
     <SolidColorBrush x:Key="Secondary1" Color="#4ADAEC" />
     <SolidColorBrush x:Key="Secondary2" Color="#1D50A3" />
