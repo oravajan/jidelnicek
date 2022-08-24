@@ -1,5 +1,6 @@
 ﻿<UserControl x:Class="Jidelnicek.Views.ListFoodView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:local="clr-namespace:Jidelnicek.Views"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -33,10 +34,14 @@
                   CanUserSortColumns="True"
                   VerticalAlignment="Top"
                   HorizontalAlignment="Center">
+            <DataGrid.Resources>
+                <local:DateConverter x:Key="DateConverter"/>
+                <local:CountConverter x:Key="CountConverter"/>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Název" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime}" />
-                <DataGridTextColumn Header="Vařeno" Binding="{Binding Cnt}" />
+                <DataGridTextColumn Header="Naposledy" Binding="{Binding LastTime, StringFormat='dd.MM.yyyy', Converter={StaticResource DateConverter}}" SortDirection="Descending" />
+                <DataGridTextColumn Header="Vařeno" Binding="{Binding Cnt, Converter={StaticResource CountConverter}}" />
                 <DataGridTemplateColumn Header="Akce">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

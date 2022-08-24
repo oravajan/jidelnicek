@@ -54,6 +54,17 @@
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="BorderThickness" Value="1" />
                     <Setter Property="BorderBrush" Value="{StaticResource BorderColor}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource SelectedInactive}" />
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Ascending">
+                            <Setter Property="Background" Value="{StaticResource SelectedInactive}" />
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Descending">
+                            <Setter Property="Background" Value="{StaticResource SelectedInactive}" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </Setter.Value>
         </Setter>
