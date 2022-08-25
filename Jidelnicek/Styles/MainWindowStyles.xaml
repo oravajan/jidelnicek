@@ -5,12 +5,14 @@
     <SolidColorBrush x:Key="BorderColor" Color="#9A9fA6" />
     <SolidColorBrush x:Key="Primary1" Color="#062556" />
     <SolidColorBrush x:Key="Primary2" Color="#0E2D5E" />
+    <SolidColorBrush x:Key="Primary3" Color="#2E4D7E" />
     <SolidColorBrush x:Key="Secondary1" Color="#4ADAEC" />
     <SolidColorBrush x:Key="Secondary2" Color="#1D50A3" />
     <SolidColorBrush x:Key="TitleWhite" Color="#FFFFFF" />
     <SolidColorBrush x:Key="TitleColor" Color="#DDFFDD" />
     <SolidColorBrush x:Key="WindowButtonSecond" Color="#784DFD" />
     <SolidColorBrush x:Key="SelectedInactive" Color="#7376BD" />
+    <SolidColorBrush x:Key="Selected" Color="#2D60B3" />
     <SolidColorBrush x:Key="SelectedSecond" Color="#281269" />
 
     <Style x:Key="MainTitle" TargetType="TextBlock">

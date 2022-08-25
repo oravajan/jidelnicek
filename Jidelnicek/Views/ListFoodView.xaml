@@ -35,8 +35,8 @@
                   VerticalAlignment="Top"
                   HorizontalAlignment="Center">
             <DataGrid.Resources>
-                <local:DateConverter x:Key="DateConverter"/>
-                <local:CountConverter x:Key="CountConverter"/>
+                <local:DateConverter x:Key="DateConverter" />
+                <local:CountConverter x:Key="CountConverter" />
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Název" Binding="{Binding Name}" />

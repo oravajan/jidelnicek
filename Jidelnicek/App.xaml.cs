@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Media.Effects;
 using Jidelnicek.ViewModels;
 using Jidelnicek.Views;
 
@@ -15,5 +16,14 @@ public partial class App : Application
         MainWindow.Show();
 
         base.OnStartup(e);
+    }
+    
+    public static void SetBlurEffect(bool set, Window? ignoreWindow)
+    {
+        foreach (Window win in Current.Windows)
+        {
+            if (win == ignoreWindow) continue;
+            win.Effect = set ? new BlurEffect() : null;
+        }
     }
 }

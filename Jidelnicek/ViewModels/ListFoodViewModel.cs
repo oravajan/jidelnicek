@@ -103,9 +103,12 @@ public class ListFoodViewModel : BaseViewModel
         var f = _food.Single(f => f.Id == id);
         EditFoodWindow w = new EditFoodWindow()
         {
-            DataContext = new EditFoodViewModel(_mapper, f)
+            DataContext = new EditFoodViewModel(_mapper, f),
+            Owner = Application.Current.MainWindow
         };
+        App.SetBlurEffect(true, w);
         w.ShowDialog();
+        App.SetBlurEffect(false,null);
         _food.Sort(LastTimeComparer);
         FoodView.Refresh();
     }

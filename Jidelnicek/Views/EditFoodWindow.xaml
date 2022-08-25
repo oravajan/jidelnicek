@@ -6,27 +6,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
         Title="Upravit jídlo"
-        SizeToContent="WidthAndHeight"
-        WindowStartupLocation="CenterScreen"
+        SizeToContent="Width"
+        Height="600"
+        WindowStartupLocation="CenterOwner"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
-    <Border Background="WhiteSmoke"
-            BorderBrush="Black"
-            BorderThickness="3">
-        <Grid>
+    <Border Background="{StaticResource Primary3}"
+            BorderBrush="{StaticResource BorderColor}"
+            BorderThickness="2"
+            CornerRadius="10">
+        <Grid Margin="15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0"
-                       Text="Upravit jídlo" />
-
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -40,42 +37,47 @@
 
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
-                           Text="Název:" />
+                           Text="Název:"
+                           Style="{StaticResource EditLabels}" />
                 <TextBox Grid.Row="0"
                          Grid.Column="1"
-                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Style="{StaticResource EditText}" />
 
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
-                           Text="Tagy:" />
+                           Text="Tagy:"
+                           Style="{StaticResource EditLabels}" />
                 <TextBox Grid.Row="1"
                          Grid.Column="1"
-                         Text="{Binding Tags, Mode=TwoWay}" />
+                         Text="{Binding Tags, Mode=TwoWay}"
+                         Style="{StaticResource EditText}"/>
 
                 <TextBlock Grid.Row="2"
                            Grid.Column="0"
-                           Text="Poznámky:" />
+                           Text="Poznámky:"
+                           Style="{StaticResource EditLabels}" />
                 <TextBox Grid.Row="2"
                          Grid.Column="1"
                          Text="{Binding Notes, Mode=TwoWay}"
+                         Style="{StaticResource EditText}"
                          TextWrapping="Wrap"
                          AcceptsReturn="True"
-                         Height="100"
+                         MaxWidth="500"
+                         MaxLines="6"
                          MaxLength="2000"
                          VerticalScrollBarVisibility="Auto" />
             </Grid>
             
-            <Button Grid.Row="2"
-                    Content="Vařit"
-                    Command="{Binding MakeFoodCommand}" />
-            
-            <DataGrid Grid.Row="3"
+            <DataGrid Grid.Row="1"
                       ItemsSource="{Binding History}"
+                      Style="{StaticResource MainGrid}"
                       AutoGenerateColumns="False"
                       CanUserResizeRows="False"
                       CanUserResizeColumns="False"
-                      VerticalScrollBarVisibility="Auto"
-                      IsSynchronizedWithCurrentItem="True">
+                      VerticalAlignment="Top"
+                      HorizontalAlignment="Center"
+                      SelectedIndex="0">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Datum">
                         <DataGridTemplateColumn.CellTemplate>
@@ -88,19 +90,26 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Smazat"
-                                        Command="Delete"/>
+                                        Command="Delete"
+                                        Style="{StaticResource DeleteButton}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
             
-            <StackPanel Grid.Row="4"
-                        Orientation="Horizontal">
-                <Button Content="Uložit změny"
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Content="Uložit"
+                        Style="{StaticResource EditButton}"
                         Command="{Binding SaveCommand}"
                         CommandParameter="{Binding ElementName=EditWindow}" />
-                <Button Content="Zrušit"
+                <Button Content="Vařit"
+                        Style="{StaticResource EditButton}"
+                        Command="{Binding MakeFoodCommand}" />
+                <Button Content="Zpět"
+                        Style="{StaticResource EditButton}"
                         Command="{Binding CloseCommand}"
                         CommandParameter="{Binding ElementName=EditWindow}" />
             </StackPanel>

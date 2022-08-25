@@ -30,30 +30,30 @@
             <TextBlock Grid.Row="0"
                        Grid.Column="0"
                        Text="Název:"
-                       Style="{StaticResource Labels}" />
+                       Style="{StaticResource AddLabels}" />
             <TextBox Grid.Row="0"
                      Grid.Column="1"
                      Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     Style="{StaticResource Text}">
+                     Style="{StaticResource AddText}">
             </TextBox>
 
             <TextBlock Grid.Row="1"
                        Grid.Column="0"
                        Text="Tagy:"
-                       Style="{StaticResource Labels}" />
+                       Style="{StaticResource AddLabels}" />
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Text="{Binding Tags, Mode=TwoWay}"
-                     Style="{StaticResource Text}" />
+                     Style="{StaticResource AddText}" />
 
             <TextBlock Grid.Row="2"
                        Grid.Column="0"
                        Text="Poznámky:"
-                       Style="{StaticResource Labels}" />
+                       Style="{StaticResource AddLabels}" />
             <TextBox Grid.Row="2"
                      Grid.Column="1"
                      Text="{Binding Notes, Mode=TwoWay}"
-                     Style="{StaticResource Text}"
+                     Style="{StaticResource AddText}"
                      TextWrapping="Wrap"
                      AcceptsReturn="True"
                      MaxLines="4"
