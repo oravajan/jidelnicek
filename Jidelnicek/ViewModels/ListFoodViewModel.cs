@@ -36,8 +36,8 @@ public class ListFoodViewModel : BaseViewModel
     {
         _mapper = new FoodDataMapper();
         _food = _mapper.GetAll().ToList();
-        _food.Sort(LastTimeComparer);
         FoodView = CollectionViewSource.GetDefaultView(_food);
+        FoodView.SortDescriptions.Add(new SortDescription("LastTime", ListSortDirection.Descending));
         FoodView.Filter = FilterFood;
         
         MakeFoodCommand = new CommandViewModel(MakeFood);
@@ -63,11 +63,6 @@ public class ListFoodViewModel : BaseViewModel
         return false;
     }
 
-    private int LastTimeComparer(Food f1, Food f2)
-    {
-        return f2.LastTime.CompareTo(f1.LastTime);
-    }
-
     private void MakeFood(object? obj)
     {
         if (obj == null)
@@ -76,7 +71,6 @@ public class ListFoodViewModel : BaseViewModel
         var f = _food.Single(f => f.Id == id);
         f.History.Add(DateTime.Now);
         f.History.Sort();
-        _food.Sort(LastTimeComparer);
         _mapper.Update(f);
         FoodView.Refresh();
     }
@@ -109,7 +103,6 @@ public class ListFoodViewModel : BaseViewModel
         App.SetBlurEffect(true, w);
         w.ShowDialog();
         App.SetBlurEffect(false,null);
-        _food.Sort(LastTimeComparer);
         FoodView.Refresh();
     }
 }
