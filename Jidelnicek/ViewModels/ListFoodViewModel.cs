@@ -27,6 +27,7 @@ public class ListFoodViewModel : BaseViewModel
     public ICommand MakeFoodCommand { get; }
     public ICommand DeleteFoodCommand { get; }
     public ICommand EditFoodCommand { get; }
+    public ICommand DeleteFilterCommand { get; }
 
     private readonly IDataMapper<Food> _mapper;
     private List<Food> _food;
@@ -43,6 +44,7 @@ public class ListFoodViewModel : BaseViewModel
         MakeFoodCommand = new CommandViewModel(MakeFood);
         DeleteFoodCommand = new CommandViewModel(DeleteFood);
         EditFoodCommand = new CommandViewModel(ShowEdit);
+        DeleteFilterCommand = new CommandViewModel((o => Filter = string.Empty));
     }
 
     private bool FilterFood(object obj)
@@ -54,9 +56,9 @@ public class ListFoodViewModel : BaseViewModel
         var filters = Filter.Split(',', StringSplitOptions.RemoveEmptyEntries);
         foreach (var filter in filters)
         {
-            if (f.Name.Contains(filter, StringComparison.CurrentCultureIgnoreCase))
+            if (f.Name.Contains(filter.Trim(), StringComparison.CurrentCultureIgnoreCase))
                 return true;
-            if (f.Tags.Any(tag => tag.Contains(filter, StringComparison.CurrentCultureIgnoreCase)))
+            if (f.Tags.Any(tag => tag.Contains(filter.Trim(), StringComparison.CurrentCultureIgnoreCase)))
                 return true;
         }
         

@@ -8,19 +8,19 @@
     <SolidColorBrush x:Key="Primary3" Color="#2E4D7E" />
     <SolidColorBrush x:Key="Secondary1" Color="#4ADAEC" />
     <SolidColorBrush x:Key="Secondary2" Color="#1D50A3" />
-    <SolidColorBrush x:Key="TitleWhite" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Secondary3" Color="#784DFD" />
+    <SolidColorBrush x:Key="WhiteColor" Color="#FFFFFF" />
     <SolidColorBrush x:Key="TitleColor" Color="#DDFFDD" />
-    <SolidColorBrush x:Key="WindowButtonSecond" Color="#784DFD" />
-    <SolidColorBrush x:Key="SelectedInactive" Color="#7376BD" />
-    <SolidColorBrush x:Key="Selected" Color="#2D60B3" />
-    <SolidColorBrush x:Key="SelectedSecond" Color="#281269" />
+    <SolidColorBrush x:Key="Inactive" Color="#7376BD" />
+    <SolidColorBrush x:Key="Selected1" Color="#2D60B3" />
+    <SolidColorBrush x:Key="Selected2" Color="#281269" />
 
     <Style x:Key="MainTitle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource TitleColor}" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="FontSize" Value="42" />
-        <Setter Property="FontFamily" Value="../Fonts/#Great Vibes" />
+        <Setter Property="FontFamily" Value="../Resources/#Great Vibes" />
         <Setter Property="Margin" Value="20" />
         <Setter Property="TextDecorations" Value="Underline" />
     </Style>
@@ -42,7 +42,7 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource WindowButtonSecond}" />
+                <Setter Property="Foreground" Value="{StaticResource Secondary3}" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -52,7 +52,7 @@
         <Setter Property="Height" Value="50" />
         <Setter Property="Margin" Value="-5,0,0,5" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource SelectedInactive}" />
+        <Setter Property="Foreground" Value="{StaticResource Inactive}" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
@@ -69,8 +69,8 @@
             <!-- Button Style on hover -->
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Margin" Value="0,0,0,5" />
-                <Setter Property="Background" Value="{StaticResource SelectedSecond}" />
-                <Setter Property="Foreground" Value="{StaticResource TitleWhite}" />
+                <Setter Property="Background" Value="{StaticResource Selected2}" />
+                <Setter Property="Foreground" Value="{StaticResource WhiteColor}" />
                 <Setter Property="BorderBrush" Value="{StaticResource Secondary1}" />
             </Trigger>
             <!--Activated button style-->

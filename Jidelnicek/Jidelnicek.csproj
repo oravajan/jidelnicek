@@ -5,6 +5,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>Resources\hamburger.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -27,7 +28,7 @@
         <None Remove="Fonts\PoetsenOne-Regular.ttf" />
         <None Remove="Fonts\PentaGrams Malefissent.ttf" />
         <None Remove="Fonts\GreatVibes-Regular.ttf" />
-        <Resource Include="Fonts\GreatVibes-Regular.ttf" />
+        <Resource Include="Resources\GreatVibes-Regular.ttf" />
         <None Remove="Fonts\Raleway-Regular.ttf" />
         <None Remove="Images\history.png" />
     </ItemGroup>

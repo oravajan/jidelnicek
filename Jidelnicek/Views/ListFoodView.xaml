@@ -13,6 +13,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
@@ -22,6 +23,12 @@
                  Grid.Column="1"
                  Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource SearchBar}" />
+        <Button Grid.Row="0"
+                Grid.Column="2"
+                Content="Smazat"
+                Style="{StaticResource GridButton}"
+                Margin="-85,0,0,0"
+                Command="{Binding DeleteFilterCommand}" />
         <DataGrid Grid.Row="1"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
