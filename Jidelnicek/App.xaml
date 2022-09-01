@@ -5,9 +5,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/MainWindowStyles.xaml" />
-                <ResourceDictionary Source="Styles/AddFoodStyles.xaml" />
-                <ResourceDictionary Source="Styles/ListFoodStyles.xaml" />
-                <ResourceDictionary Source="Styles/EditFoodStyles.xaml" />
+                <ResourceDictionary Source="Styles/ViewsStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

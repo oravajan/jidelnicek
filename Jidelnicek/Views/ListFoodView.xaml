@@ -15,25 +15,30 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
+                   Style="{StaticResource MainLabel}"
                    Text="Vyhledávání:"
-                   Style="{StaticResource SearchLabel}" />
+                   Margin="10,10,0,10" />
         <TextBox Grid.Row="0"
                  Grid.Column="1"
+                 Style="{StaticResource MainText}"
                  Text="{Binding Filter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource SearchBar}" />
+                 Margin="10"
+                 Padding="5,5,60,5"
+                 BorderThickness="2" />
         <Button Grid.Row="0"
                 Grid.Column="2"
-                Content="Smazat"
                 Style="{StaticResource GridButton}"
-                Margin="-85,0,0,0"
-                Command="{Binding DeleteFilterCommand}" />
+                Content="Smazat"
+                Command="{Binding DeleteFilterCommand}"
+                Margin="-85,0,0,0" />
         <DataGrid Grid.Row="1"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
-                  ItemsSource="{Binding FoodView}"
                   Style="{StaticResource MainGrid}"
+                  ItemsSource="{Binding FoodView}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserResizeRows="False"
@@ -53,18 +58,18 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Content="Vařit"
+                                <Button Style="{StaticResource GridButton}"
+                                        Content="Vařit"
                                         Command="{Binding Path=DataContext.MakeFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                        CommandParameter="{Binding Id}"
-                                        Style="{StaticResource GridButton}" />
-                                <Button Content="Upravit"
+                                        CommandParameter="{Binding Id}" />
+                                <Button Style="{StaticResource GridButton}"
+                                        Content="Upravit"
                                         Command="{Binding Path=DataContext.EditFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                        CommandParameter="{Binding Id}"
-                                        Style="{StaticResource GridButton}" />
-                                <Button Content="Smazat"
+                                        CommandParameter="{Binding Id}" />
+                                <Button Style="{StaticResource GridButton}"
+                                        Content="Smazat"
                                         Command="{Binding Path=DataContext.DeleteFoodCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                        CommandParameter="{Binding Id}"
-                                        Style="{StaticResource GridButton}" />
+                                        CommandParameter="{Binding Id}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

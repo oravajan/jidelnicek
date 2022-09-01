@@ -37,30 +37,36 @@
 
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
+                           Style="{StaticResource MainLabel}"
                            Text="Název:"
-                           Style="{StaticResource EditLabels}" />
+                           Margin="30,10,0,10" />
                 <TextBox Grid.Row="0"
                          Grid.Column="1"
+                         Style="{StaticResource MainText}"
                          Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource EditText}" />
+                         MaxWidth="500" />
 
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
+                           Style="{StaticResource MainLabel}"
                            Text="Tagy:"
-                           Style="{StaticResource EditLabels}" />
+                           Margin="30,10,0,10" />
                 <TextBox Grid.Row="1"
                          Grid.Column="1"
+                         Style="{StaticResource MainText}"
                          Text="{Binding Tags, Mode=TwoWay}"
-                         Style="{StaticResource EditText}"/>
+                         MaxWidth="500" />
 
                 <TextBlock Grid.Row="2"
                            Grid.Column="0"
+                           Style="{StaticResource MainLabel}"
                            Text="Poznámky:"
-                           Style="{StaticResource EditLabels}" />
+                           Margin="30,10,0,10" />
                 <TextBox Grid.Row="2"
                          Grid.Column="1"
+                         Style="{StaticResource MainText}"
                          Text="{Binding Notes, Mode=TwoWay}"
-                         Style="{StaticResource EditText}"
+                         MaxWidth="500"
                          TextWrapping="Wrap"
                          AcceptsReturn="True"
                          MaxLines="6"
@@ -69,8 +75,8 @@
             </Grid>
             
             <DataGrid Grid.Row="1"
-                      ItemsSource="{Binding History}"
                       Style="{StaticResource MainGrid}"
+                      ItemsSource="{Binding History}"
                       AutoGenerateColumns="False"
                       CanUserResizeRows="False"
                       CanUserResizeColumns="False"
@@ -88,9 +94,9 @@
                     <DataGridTemplateColumn Header="Akce">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Smazat"
-                                        Command="Delete"
-                                        Style="{StaticResource DeleteButton}" />
+                                <Button Style="{StaticResource DeleteButton}"
+                                        Content="Smazat"
+                                        Command="Delete" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

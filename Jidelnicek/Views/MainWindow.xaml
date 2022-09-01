@@ -63,10 +63,10 @@
                 
                 <Border Grid.Column="0"
                         CornerRadius="0, 0, 0, 15"
-                        Background="{StaticResource Primary2}"/>
+                        Background="{StaticResource Primary2}" />
                 <TextBlock Grid.Column="0"
                            Style="{StaticResource MainTitle}"
-                           Text="Jídelníček"/>
+                           Text="Jídelníček" />
                 <StackPanel Grid.Column="0"
                             VerticalAlignment="Center">
                     <RadioButton Style="{StaticResource MenuButton}"
@@ -74,31 +74,31 @@
                                  Command="{Binding UpdateViewCommand}"
                                  CommandParameter="ListFood">
                         <StackPanel Orientation="Horizontal">
-                            <icon:PackIconMaterial Kind="Home" Style="{StaticResource MenuButtonIcon}"/>
-                            <TextBlock Text="Jídla" Style="{StaticResource MenuButtonText}"/>
+                            <icon:PackIconMaterial Kind="Home" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Jídla" Style="{StaticResource MenuButtonText}" />
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource MenuButton}"
                                  Command="{Binding UpdateViewCommand}"
                                  CommandParameter="AddFood">
                         <StackPanel Orientation="Horizontal">
-                            <icon:PackIconMaterial Kind="PlusCircle" Style="{StaticResource MenuButtonIcon}"/>
-                            <TextBlock Text="Přidat jídlo" Style="{StaticResource MenuButtonText}"/>
+                            <icon:PackIconMaterial Kind="PlusCircle" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Přidat jídlo" Style="{StaticResource MenuButtonText}" />
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource MenuButton}"
                                  Command="{Binding UpdateViewCommand}"
                                  CommandParameter="HistoryFood">
                         <StackPanel Orientation="Horizontal">
-                            <icon:PackIconMaterial Kind="History" Style="{StaticResource MenuButtonIcon}"/>
-                            <TextBlock Text="Historie" Style="{StaticResource MenuButtonText}"/>
+                            <icon:PackIconMaterial Kind="History" Style="{StaticResource MenuButtonIcon}" />
+                            <TextBlock Text="Historie" Style="{StaticResource MenuButtonText}" />
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
                 
                 <Border Grid.Column="1"
                         CornerRadius="0, 0, 15, 0"
-                        Background="{StaticResource Secondary2}"/>
+                        Background="{StaticResource Secondary2}" />
                 <ContentControl Grid.Column="1"
                                 Margin="20"
                                 Content="{Binding CurrentViewModel}">

@@ -15,6 +15,7 @@
     <SolidColorBrush x:Key="Selected1" Color="#2D60B3" />
     <SolidColorBrush x:Key="Selected2" Color="#281269" />
 
+    <!-- Title -->
     <Style x:Key="MainTitle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{StaticResource TitleColor}" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -25,6 +26,7 @@
         <Setter Property="TextDecorations" Value="Underline" />
     </Style>
 
+    <!-- Window button(minimize, maximize, close) -->
     <Style x:Key="WindowButton" TargetType="Button">
         <Setter Property="Width" Value="30" />
         <Setter Property="Height" Value="30" />
@@ -47,8 +49,8 @@
         </Style.Triggers>
     </Style>
 
+    <!-- Menu button -->
     <Style x:Key="MenuButton" TargetType="RadioButton">
-        <!--Normal button style-->
         <Setter Property="Height" Value="50" />
         <Setter Property="Margin" Value="-5,0,0,5" />
         <Setter Property="Background" Value="Transparent" />

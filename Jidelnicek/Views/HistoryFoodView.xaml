@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d">
     <Grid>
-        <DataGrid ItemsSource="{Binding Records}"
-                  Style="{StaticResource MainGrid}"
+        <DataGrid Style="{StaticResource MainGrid}"
+                  ItemsSource="{Binding Records}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
                   CanUserResizeRows="False"
